@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Zap, GraduationCap, Fuel, Truck, BatteryCharging, Wallet, Car, Users, Shield, Tag, Wrench, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const EV_IMG = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f7a5792ea_generated_b6c35f55.png';
@@ -20,16 +20,43 @@ const hubs = [
   { label: 'Road Trips', icon: MapPin, image: null },
 ];
 
-const ITEMS_PER_SLIDE = 3;
-const totalSlides = Math.ceil(hubs.length / ITEMS_PER_SLIDE);
+// Clone items at start and end for infinite effect
+const CLONES = 3;
+const items = [
+  ...hubs.slice(-CLONES),
+  ...hubs,
+  ...hubs.slice(0, CLONES),
+];
 
 export default function HubsSection() {
-  const [current, setCurrent] = useState(0);
+  const [index, setIndex] = useState(CLONES);
+  const [transitioning, setTransitioning] = useState(true);
+  const timerRef = useRef(null);
 
-  const prev = () => setCurrent((c) => Math.max(0, c - 1));
-  const next = () => setCurrent((c) => Math.min(totalSlides - 1, c + 1));
+  const goTo = (newIndex, animate = true) => {
+    setTransitioning(animate);
+    setIndex(newIndex);
+  };
 
-  const visible = hubs.slice(current * ITEMS_PER_SLIDE, current * ITEMS_PER_SLIDE + ITEMS_PER_SLIDE);
+  const next = () => goTo(index + 1);
+  const prev = () => goTo(index - 1);
+
+  // Auto-play
+  useEffect(() => {
+    timerRef.current = setInterval(() => goTo(prev => prev + 1), 3000);
+    return () => clearInterval(timerRef.current);
+  }, [index]);
+
+  // Handle infinite loop jump (no animation)
+  const handleTransitionEnd = () => {
+    if (index >= hubs.length + CLONES) {
+      goTo(CLONES, false);
+    } else if (index < CLONES) {
+      goTo(hubs.length + CLONES - 1, false);
+    }
+  };
+
+  const offset = -(index * (100 / 3)) + '%';
 
   return (
     <section className="bg-secondary py-12 md:py-16">
@@ -42,42 +69,52 @@ export default function HubsSection() {
         </p>
 
         <div className="relative flex items-center gap-3">
-          {/* Left arrow */}
           <button
             onClick={prev}
-            disabled={current === 0}
-            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors z-10"
           >
             <ChevronLeft className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Cards */}
-          <div className="flex-1 grid grid-cols-3 gap-4">
-            {visible.map((hub) => (
-              <button
-                key={hub.label}
-                className="group relative bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 flex flex-col items-center justify-center gap-3 p-6 aspect-square"
-              >
-                {hub.image && (
-                  <img
-                    src={hub.image}
-                    alt={hub.label}
-                    className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity"
-                  />
-                )}
-                <div className="relative z-10 flex flex-col items-center gap-3">
-                  <hub.icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-semibold text-foreground text-center leading-tight">{hub.label}</span>
+          <div className="flex-1 overflow-hidden">
+            <div
+              className="flex"
+              style={{
+                transform: `translateX(calc(${offset} + 0%))`,
+                transition: transitioning ? 'transform 0.45s ease-in-out' : 'none',
+                width: `${(items.length / 3) * 100}%`,
+              }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {items.map((hub, i) => (
+                <div
+                  key={i}
+                  style={{ width: `${100 / items.length}%` }}
+                  className="px-2"
+                >
+                  <button
+                    className="group relative w-full bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 flex flex-col items-center justify-center gap-3 p-6 aspect-square"
+                  >
+                    {hub.image && (
+                      <img
+                        src={hub.image}
+                        alt={hub.label}
+                        className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity"
+                      />
+                    )}
+                    <div className="relative z-10 flex flex-col items-center gap-3">
+                      <hub.icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
+                      <span className="text-sm font-semibold text-foreground text-center leading-tight">{hub.label}</span>
+                    </div>
+                  </button>
                 </div>
-              </button>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Right arrow */}
           <button
             onClick={next}
-            disabled={current === totalSlides - 1}
-            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors z-10"
           >
             <ChevronRight className="w-5 h-5 text-foreground" />
           </button>
@@ -85,13 +122,16 @@ export default function HubsSection() {
 
         {/* Dots */}
         <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: totalSlides }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-primary w-5' : 'bg-border'}`}
-            />
-          ))}
+          {hubs.map((_, i) => {
+            const activeIndex = ((index - CLONES) % hubs.length + hubs.length) % hubs.length;
+            return (
+              <button
+                key={i}
+                onClick={() => goTo(i + CLONES)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-primary w-5' : 'bg-border w-2'}`}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
