@@ -20,16 +20,16 @@ const hubs = [
   { label: 'Road Trips', icon: MapPin, image: null },
 ];
 
-const ITEMS_PER_SLIDE = 3;
-const totalSlides = Math.ceil(hubs.length / ITEMS_PER_SLIDE);
-
 export default function HubsSection() {
-  const [current, setCurrent] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
+  const total = hubs.length;
 
-  const prev = () => setCurrent((c) => Math.max(0, c - 1));
-  const next = () => setCurrent((c) => Math.min(totalSlides - 1, c + 1));
+  const getItem = (offset) => hubs[(startIndex + offset + total) % total];
 
-  const visible = hubs.slice(current * ITEMS_PER_SLIDE, current * ITEMS_PER_SLIDE + ITEMS_PER_SLIDE);
+  const prev = () => setStartIndex((i) => (i - 1 + total) % total);
+  const next = () => setStartIndex((i) => (i + 1) % total);
+
+  const visible = [getItem(0), getItem(1), getItem(2)];
 
   return (
     <section className="bg-secondary py-12 md:py-16">
@@ -41,21 +41,18 @@ export default function HubsSection() {
           Tips and advice for buying your next car.
         </p>
 
-        <div className="relative flex items-center gap-3">
-          {/* Left arrow */}
+        <div className="flex items-center gap-3">
           <button
             onClick={prev}
-            disabled={current === 0}
-            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors"
           >
             <ChevronLeft className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Cards */}
           <div className="flex-1 grid grid-cols-3 gap-4">
-            {visible.map((hub) => (
+            {visible.map((hub, idx) => (
               <button
-                key={hub.label}
+                key={`${hub.label}-${idx}`}
                 className="group relative bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 flex flex-col items-center justify-center gap-3 p-6 aspect-square"
               >
                 {hub.image && (
@@ -73,25 +70,12 @@ export default function HubsSection() {
             ))}
           </div>
 
-          {/* Right arrow */}
           <button
             onClick={next}
-            disabled={current === totalSlides - 1}
-            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors"
           >
             <ChevronRight className="w-5 h-5 text-foreground" />
           </button>
-        </div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: totalSlides }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-primary w-5' : 'bg-border'}`}
-            />
-          ))}
         </div>
       </div>
     </section>
