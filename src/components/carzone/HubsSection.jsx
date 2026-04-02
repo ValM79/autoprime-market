@@ -1,9 +1,9 @@
 import React from 'react';
 import { Zap, GraduationCap, Fuel, Truck, BatteryCharging, Wallet, Car, Users, Shield, Tag, Wrench, MapPin } from 'lucide-react';
 
-const EV_IMG = '/__generating__/img_0c25767242bc.png';
-const LEARNER_IMG = '/__generating__/img_5df379cd6c0d.png';
-const HYBRID_IMG = '/__generating__/img_ae8970d4569a.png';
+const EV_IMG = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f7a5792ea_generated_b6c35f55.png';
+const LEARNER_IMG = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/7b713a3a4_generated_9e1d0947.png';
+const HYBRID_IMG = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/557dd077c_generated_09d0bdcb.png';
 
 const hubs = [
   { label: 'EV Charging', icon: Zap, image: EV_IMG },
