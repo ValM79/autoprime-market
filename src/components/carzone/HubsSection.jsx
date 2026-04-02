@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Zap, GraduationCap, Fuel, Truck, BatteryCharging, Wallet, Car, Users, Shield, Tag, Wrench, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const EV_IMG = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f7a5792ea_generated_b6c35f55.png';
@@ -20,27 +20,16 @@ const hubs = [
   { label: 'Road Trips', icon: MapPin, image: null },
 ];
 
-const CARD_WIDTH = 160;
-const GAP = 12;
+const ITEMS_PER_SLIDE = 3;
+const totalSlides = Math.ceil(hubs.length / ITEMS_PER_SLIDE);
 
 export default function HubsSection() {
-  const trackRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [current, setCurrent] = useState(0);
 
-  const updateArrows = () => {
-    const el = trackRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 4);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
-  };
+  const prev = () => setCurrent((c) => Math.max(0, c - 1));
+  const next = () => setCurrent((c) => Math.min(totalSlides - 1, c + 1));
 
-  const scroll = (dir) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * (CARD_WIDTH + GAP) * 3, behavior: 'smooth' });
-    setTimeout(updateArrows, 350);
-  };
+  const visible = hubs.slice(current * ITEMS_PER_SLIDE, current * ITEMS_PER_SLIDE + ITEMS_PER_SLIDE);
 
   return (
     <section className="bg-secondary py-12 md:py-16">
@@ -52,55 +41,57 @@ export default function HubsSection() {
           Tips and advice for buying your next car.
         </p>
 
-        <div className="relative">
+        <div className="relative flex items-center gap-3">
           {/* Left arrow */}
           <button
-            onClick={() => scroll(-1)}
-            disabled={!canScrollLeft}
-            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            onClick={prev}
+            disabled={current === 0}
+            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronLeft className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Scrollable track */}
-          <div
-            ref={trackRef}
-            onScroll={updateArrows}
-            className="flex gap-3 overflow-x-auto scroll-smooth pb-2"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {hubs.map((hub) => (
+          {/* Cards */}
+          <div className="flex-1 grid grid-cols-3 gap-4">
+            {visible.map((hub) => (
               <button
                 key={hub.label}
-                className="group relative bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 flex-shrink-0 flex flex-col items-center justify-center gap-2 p-4"
-                style={{ width: CARD_WIDTH, height: CARD_WIDTH }}
+                className="group relative bg-card rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 flex flex-col items-center justify-center gap-3 p-6 aspect-square"
               >
-                {hub.image ? (
-                  <>
-                    <img src={hub.image} alt={hub.label} className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity" />
-                    <div className="relative z-10 flex flex-col items-center gap-2">
-                      <hub.icon className="w-7 h-7 text-primary" />
-                      <span className="text-xs font-semibold text-foreground text-center leading-tight">{hub.label}</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <hub.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-semibold text-foreground text-center leading-tight">{hub.label}</span>
-                  </>
+                {hub.image && (
+                  <img
+                    src={hub.image}
+                    alt={hub.label}
+                    className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity"
+                  />
                 )}
+                <div className="relative z-10 flex flex-col items-center gap-3">
+                  <hub.icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform" />
+                  <span className="text-sm font-semibold text-foreground text-center leading-tight">{hub.label}</span>
+                </div>
               </button>
             ))}
           </div>
 
           {/* Right arrow */}
           <button
-            onClick={() => scroll(1)}
-            disabled={!canScrollRight}
-            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            onClick={next}
+            disabled={current === totalSlides - 1}
+            className="flex-shrink-0 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-card transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronRight className="w-5 h-5 text-foreground" />
           </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: totalSlides }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-primary w-5' : 'bg-border'}`}
+            />
+          ))}
         </div>
       </div>
     </section>
