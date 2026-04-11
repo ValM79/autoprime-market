@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 import { MapPin, Building2, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -15,6 +17,7 @@ const cars = [
 ];
 
 export default function FeaturedDealer() {
+  const { lang } = useLang();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const next = () => setCurrentSlide((prev) => (prev + 1) % cars.length);
@@ -23,7 +26,7 @@ export default function FeaturedDealer() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
-        Featured dealer
+        {t(lang, 'featured_title')}
       </h2>
       <div className="text-center mb-2">
         <a href="#" className="text-primary font-semibold hover:underline text-lg">
@@ -36,7 +39,7 @@ export default function FeaturedDealer() {
         ))}
         <Star className="w-4 h-4 fill-yellow-400/40 text-yellow-400" />
         <span className="text-sm text-muted-foreground ml-1">4/5</span>
-        <a href="#" className="text-sm text-primary hover:underline ml-1">(82 reviews)</a>
+        <a href="#" className="text-sm text-primary hover:underline ml-1">(82 {t(lang, 'featured_reviews')})</a>
       </div>
       <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground mb-8">
         <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> Cork</span>
@@ -92,7 +95,7 @@ export default function FeaturedDealer() {
 
       <div className="text-center mt-8">
         <Button variant="outline" className="rounded-full px-8 font-semibold border-primary text-primary hover:bg-primary hover:text-white">
-          View dealer stock
+          {t(lang, 'featured_view_stock')}
         </Button>
       </div>
     </section>

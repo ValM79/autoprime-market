@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 
 const makes = [
   { name: 'Volkswagen', count: '6,746' },
@@ -16,10 +18,11 @@ const makes = [
 ];
 
 export default function PopularMakes() {
+  const { lang } = useLang();
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-8">
-        Popular makes
+        {t(lang, 'makes_title')}
       </h2>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
         {makes.map((make) => (

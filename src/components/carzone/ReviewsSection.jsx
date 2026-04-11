@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 import { Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -26,10 +28,11 @@ const articles = [
 ];
 
 export default function ReviewsSection() {
+  const { lang } = useLang();
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-8">
-        Car reviews, motoring advice and more
+        {t(lang, 'reviews_title')}
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -47,7 +50,7 @@ export default function ReviewsSection() {
               <div className={`absolute top-3 left-3 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider ${
                 article.type === 'review' ? 'bg-primary' : 'bg-accent'
               }`}>
-                {article.type}
+                {t(lang, article.type === 'review' ? 'reviews_type_review' : 'reviews_type_advice')}
               </div>
             </div>
             <div className="p-4">
@@ -56,7 +59,7 @@ export default function ReviewsSection() {
               </h3>
               {article.rating && (
                 <div className="flex items-center gap-0.5 mb-2">
-                  <span className="text-xs text-muted-foreground mr-1">Our Rating:</span>
+                  <span className="text-xs text-muted-foreground mr-1">{t(lang, 'reviews_rating')}</span>
                   {Array.from({ length: article.rating }).map((_, i) => (
                     <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                   ))}
@@ -64,7 +67,7 @@ export default function ReviewsSection() {
               )}
               <p className="text-sm text-muted-foreground line-clamp-2">{article.excerpt}</p>
               <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary mt-3">
-                Read {article.type} <ArrowRight className="w-3.5 h-3.5" />
+                {t(lang, 'reviews_read')} {t(lang, article.type === 'review' ? 'reviews_type_review' : 'reviews_type_advice')} <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </div>
           </div>
@@ -73,7 +76,7 @@ export default function ReviewsSection() {
 
       <div className="text-center mt-8">
         <Button variant="outline" className="rounded-full px-8 font-semibold border-primary text-primary hover:bg-primary hover:text-white">
-          See all articles
+          {t(lang, 'reviews_see_all')}
         </Button>
       </div>
     </section>

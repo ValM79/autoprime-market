@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 import { GitCompare } from 'lucide-react';
 
 const CAR_IMAGES = [
@@ -101,10 +103,11 @@ export const SAMPLE_CARS = [
 ];
 
 export default function CarListings({ selectedIds, onToggleCompare }) {
+  const { lang } = useLang();
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
-      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Latest Listings</h2>
-      <p className="text-muted-foreground mb-8">Select up to 4 cars to compare side-by-side.</p>
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">{t(lang, 'listings_title')}</h2>
+      <p className="text-muted-foreground mb-8">{t(lang, 'listings_subtitle')}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {SAMPLE_CARS.map((car) => {
@@ -139,7 +142,7 @@ export default function CarListings({ selectedIds, onToggleCompare }) {
                   }`}
                 >
                   <GitCompare className="w-3.5 h-3.5" />
-                  {isSelected ? 'Added' : 'Compare'}
+                  {isSelected ? t(lang, 'compare_added') : isDisabled ? t(lang, 'compare_limit') : t(lang, 'compare_add')}
                 </button>
               </div>
               <div className="p-4">

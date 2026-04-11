@@ -1,15 +1,18 @@
 import React from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 import { X, GitCompare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function CompareBar({ cars, onRemove, onCompare, onClear }) {
+  const { lang } = useLang();
   if (cars.length === 0) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-foreground text-white shadow-2xl border-t-2 border-primary">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
         <div className="flex items-center gap-2 flex-1 overflow-x-auto">
-          <span className="text-sm font-semibold text-white/70 shrink-0">Compare ({cars.length}/4):</span>
+          <span className="text-sm font-semibold text-white/70 shrink-0">{t(lang, 'comparebar_label')} ({cars.length}/4):</span>
           {cars.map((car) => (
             <div
               key={car.id}
@@ -32,7 +35,7 @@ export default function CompareBar({ cars, onRemove, onCompare, onClear }) {
             onClick={onClear}
             className="text-xs text-white/50 hover:text-white transition-colors"
           >
-            Clear all
+            {t(lang, 'comparebar_clear')}
           </button>
           <Button
             onClick={onCompare}
@@ -40,7 +43,7 @@ export default function CompareBar({ cars, onRemove, onCompare, onClear }) {
             className="bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg h-9 px-5 text-sm"
           >
             <GitCompare className="w-4 h-4 mr-1.5" />
-            Compare {cars.length} Cars
+            {t(lang, 'comparebar_btn')} ({cars.length})
           </Button>
         </div>
       </div>

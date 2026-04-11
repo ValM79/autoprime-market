@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Heart, User, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLang } from '@/lib/LangContext';
+import { t, LANGUAGES } from '@/lib/i18n';
 
 export default function Navbar() {
+  const { lang, setLang } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => { if (langRef.current && !langRef.current.contains(e.target)) setLangOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   const navLinks = [
-    { label: 'Buy used', hasDropdown: true },
-    { label: 'New cars', hasDropdown: true },
-    { label: 'Dealers', hasDropdown: true },
-    { label: 'Reviews & more', hasDropdown: true },
-    { label: 'Car insurance', hasDropdown: false },
+    { label: t(lang, 'nav_buy_used'), hasDropdown: true },
+    { label: t(lang, 'nav_new_cars'), hasDropdown: true },
+    { label: t(lang, 'nav_dealers'), hasDropdown: true },
+    { label: t(lang, 'nav_reviews'), hasDropdown: true },
+    { label: t(lang, 'nav_insurance'), hasDropdown: false },
   ];
 
   return (
@@ -42,17 +53,43 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <Heart className="w-5 h-5" />
-              <span className="text-[10px] mt-0.5">Saved</span>
+              <span className="text-[10px] mt-0.5">{t(lang, 'nav_saved')}</span>
             </button>
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <User className="w-5 h-5" />
-              <span className="text-[10px] mt-0.5">Sign in</span>
+              <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_in')}</span>
             </button>
+            {/* Language switcher */}
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setLangOpen(!langOpen)}
+                className="flex items-center gap-1 text-white/90 hover:text-white text-sm font-semibold px-2 py-1 rounded transition-colors"
+              >
+                {LANGUAGES.find(l => l.code === lang)?.label}
+                <ChevronDown className="w-3 h-3" />
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-xl border border-border overflow-hidden z-50">
+                  {LANGUAGES.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => { setLang(l.code); setLangOpen(false); }}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-secondary transition-colors flex items-center gap-2 ${
+                        lang === l.code ? 'text-primary font-semibold' : 'text-foreground'
+                      }`}
+                    >
+                      <span className="font-bold w-6">{l.label}</span>
+                      <span className="text-muted-foreground">{l.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <Button
               variant="outline"
               className="bg-transparent border-white text-white hover:bg-white hover:text-primary text-sm font-semibold rounded-full px-5 h-9"
             >
-              Sell my car
+              {t(lang, 'nav_sell')}
             </Button>
             <button
               className="lg:hidden text-white"
@@ -78,10 +115,10 @@ export default function Navbar() {
           ))}
           <div className="flex gap-6 px-6 pt-3 border-t border-white/10 mt-2">
             <button className="flex items-center gap-2 text-white/80 text-sm">
-              <Heart className="w-4 h-4" /> Saved
+              <Heart className="w-4 h-4" /> {t(lang, 'nav_saved')}
             </button>
             <button className="flex items-center gap-2 text-white/80 text-sm">
-              <User className="w-4 h-4" /> Sign in
+              <User className="w-4 h-4" /> {t(lang, 'nav_sign_in')}
             </button>
           </div>
         </div>

@@ -1,13 +1,17 @@
 import React from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 import { Shield, Wallet, FileCheck } from 'lucide-react';
 
-const links = [
-  { label: 'Cartell Vehicle Check', icon: FileCheck },
-  { label: 'Car Finance', icon: Wallet },
-  { label: 'Car Insurance', icon: Shield },
-];
+
 
 export default function QuickLinks() {
+  const { lang } = useLang();
+  const links = [
+    { label: t(lang, 'quick_vehicle_check'), icon: FileCheck },
+    { label: t(lang, 'quick_finance'), icon: Wallet },
+    { label: t(lang, 'quick_insurance'), icon: Shield },
+  ];
   return (
     <div className="max-w-7xl mx-auto px-4 py-3 flex justify-end">
       <div className="flex gap-2">

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t } from '@/lib/i18n';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
@@ -11,6 +13,7 @@ const years = Array.from({ length: 28 }, (_, i) => String(2027 - i));
 const prices = ['€5,000', '€10,000', '€15,000', '€20,000', '€25,000', '€30,000', '€40,000', '€50,000', '€60,000', '€75,000', '€100,000'];
 
 export default function HeroSearch() {
+  const { lang } = useLang();
   return (
     <section className="relative overflow-hidden">
       {/* Background image */}
@@ -24,12 +27,12 @@ export default function HeroSearch() {
           {/* Search form */}
           <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-md">
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-5">
-              Search for cars in Ireland
+              {t(lang, 'hero_title')}
             </h1>
             <div className="grid grid-cols-2 gap-3">
               <Select>
                 <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm">
-                  <SelectValue placeholder="Make" />
+                  <SelectValue placeholder={t(lang, 'hero_make')} />
                 </SelectTrigger>
                 <SelectContent>
                   {makes.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
@@ -38,7 +41,7 @@ export default function HeroSearch() {
 
               <Select disabled>
                 <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm opacity-50">
-                  <SelectValue placeholder="Model" />
+                  <SelectValue placeholder={t(lang, 'hero_model')} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="any">Any</SelectItem>
@@ -47,7 +50,7 @@ export default function HeroSearch() {
 
               <Select>
                 <SelectTrigger className="h-11 bg-secondary border-0 text-sm">
-                  <SelectValue placeholder="Min Year" />
+                  <SelectValue placeholder={t(lang, 'hero_min_year')} />
                 </SelectTrigger>
                 <SelectContent>
                   {years.map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}
@@ -56,7 +59,7 @@ export default function HeroSearch() {
 
               <Select>
                 <SelectTrigger className="h-11 bg-secondary border-0 text-sm">
-                  <SelectValue placeholder="Max Year" />
+                  <SelectValue placeholder={t(lang, 'hero_max_year')} />
                 </SelectTrigger>
                 <SelectContent>
                   {years.map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}
@@ -65,7 +68,7 @@ export default function HeroSearch() {
 
               <Select>
                 <SelectTrigger className="h-11 bg-secondary border-0 text-sm">
-                  <SelectValue placeholder="Min Price" />
+                  <SelectValue placeholder={t(lang, 'hero_min_price')} />
                 </SelectTrigger>
                 <SelectContent>
                   {prices.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
@@ -74,7 +77,7 @@ export default function HeroSearch() {
 
               <Select>
                 <SelectTrigger className="h-11 bg-secondary border-0 text-sm">
-                  <SelectValue placeholder="Max Price" />
+                  <SelectValue placeholder={t(lang, 'hero_max_price')} />
                 </SelectTrigger>
                 <SelectContent>
                   {prices.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
@@ -83,7 +86,7 @@ export default function HeroSearch() {
 
               <Select>
                 <SelectTrigger className="h-11 bg-secondary border-0 text-sm">
-                  <SelectValue placeholder="Body Type" />
+                  <SelectValue placeholder={t(lang, 'hero_body_type')} />
                 </SelectTrigger>
                 <SelectContent>
                   {bodyTypes.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}
@@ -92,7 +95,7 @@ export default function HeroSearch() {
 
               <Button className="h-11 bg-primary hover:bg-primary/90 text-white font-semibold text-sm rounded-lg">
                 <Search className="w-4 h-4 mr-2" />
-                Search
+                {t(lang, 'hero_search')}
               </Button>
             </div>
           </div>
@@ -101,11 +104,11 @@ export default function HeroSearch() {
           <div className="hidden lg:flex flex-col items-end gap-6 text-white pt-8">
             <div className="text-right">
               <h2 className="text-3xl xl:text-4xl font-bold leading-tight drop-shadow-lg">
-                Know what your car<br />is really worth.
+                {t(lang, 'hero_tagline')}
               </h2>
             </div>
             <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg px-8 h-12 text-base shadow-lg">
-              Value My Car
+              {t(lang, 'hero_value_car')}
             </Button>
           </div>
         </div>
