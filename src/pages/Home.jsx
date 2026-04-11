@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/carzone/Navbar';
 import QuickLinks from '../components/carzone/QuickLinks';
 import HeroSearch from '../components/carzone/HeroSearch';
-import FeaturedDealer from '../components/carzone/FeaturedDealer';
+import BrowseByCategory from '../components/carzone/BrowseByCategory';
 import HubsSection from '../components/carzone/HubsSection';
 import ReviewsSection from '../components/carzone/ReviewsSection';
 import ElectricSection from '../components/carzone/ElectricSection';
@@ -32,7 +32,7 @@ export default function Home() {
         <QuickLinks />
       </div>
       <HeroSearch />
-      <FeaturedDealer />
+      <BrowseByCategory />
       <CarListings selectedIds={selectedIds} onToggleCompare={toggleCompare} />
       <HubsSection />
       <ReviewsSection />
