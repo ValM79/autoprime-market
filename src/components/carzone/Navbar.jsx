@@ -57,7 +57,7 @@ export default function Navbar() {
             </button>
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <User className="text-[hsl(var(--foreground))] lucide lucide-user w-5 h-5" />
-              <span className="bg-[hsl(var(--background))] text-[#080808] mt-0.5">{t(lang, 'nav_sign_in')}</span>
+              <span className="bg-[hsl(var(--background))] text-[hsl(var(--foreground))] mt-0.5">{t(lang, 'nav_sign_in')}</span>
             </button>
             {/* Language switcher */}
             <div className="relative" ref={langRef}>
