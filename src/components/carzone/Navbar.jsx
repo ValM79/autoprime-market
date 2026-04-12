@@ -76,7 +76,7 @@ export default function Navbar() {
               onClick={() => base44.auth.redirectToLogin()}
               className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               
-                <User className="w-5 h-5" />
+                <User className="text-[hsl(var(--destructive))] lucide lucide-user w-5 h-5" />
                 <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_in')}</span>
               </button>
             }
