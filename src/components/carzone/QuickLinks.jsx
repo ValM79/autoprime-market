@@ -13,7 +13,7 @@ export default function QuickLinks() {
   { label: t(lang, 'quick_insurance'), icon: Shield }];
 
   return (
-    <div className="bg-[hsl(var(--primary))] mx-auto px-4 py-3 max-w-7xl flex justify-end">
+    <div className="bg-[hsl(var(--background))] mx-auto px-4 py-3 max-w-7xl flex justify-end">
       <div className="flex gap-2">
         {links.map((link) =>
         <button
