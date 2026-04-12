@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, User, ChevronDown, Menu, X } from 'lucide-react';
+import { Heart, User, ChevronDown, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLang } from '@/lib/LangContext';
 import { t, LANGUAGES } from '@/lib/i18n';
+import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function Navbar() {
   const { lang, setLang } = useLang();
+  const { user } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef(null);
@@ -56,10 +59,27 @@ export default function Navbar() {
               <Heart className="w-5 h-5" />
               <span className="text-[10px] mt-0.5">{t(lang, 'nav_saved')}</span>
             </Link>
-            <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
-              <User className="w-5 h-5" />
-              <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_in')}</span>
-            </button>
+            {user ? (
+              <div className="hidden sm:flex items-center gap-2">
+                <span className="text-white/80 text-xs hidden md:block">{user.full_name || user.email}</span>
+                <button
+                  onClick={() => base44.auth.logout()}
+                  className="flex flex-col items-center text-white/80 hover:text-white transition-colors"
+                  title="Logout"
+                >
+                  <LogOut className="w-5 h-5" />
+                  <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_out')}</span>
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => base44.auth.redirectToLogin()}
+                className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors"
+              >
+                <User className="w-5 h-5" />
+                <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_in')}</span>
+              </button>
+            )}
             {/* Language switcher */}
             <div className="relative" ref={langRef}>
               <button
@@ -118,9 +138,15 @@ export default function Navbar() {
             <button className="flex items-center gap-2 text-white/80 text-sm">
               <Heart className="w-4 h-4" /> {t(lang, 'nav_saved')}
             </button>
-            <button className="flex items-center gap-2 text-white/80 text-sm">
-              <User className="w-4 h-4" /> {t(lang, 'nav_sign_in')}
-            </button>
+            {user ? (
+              <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-white/80 text-sm">
+                <LogOut className="w-4 h-4" /> {t(lang, 'nav_sign_out')}
+              </button>
+            ) : (
+              <button onClick={() => base44.auth.redirectToLogin()} className="flex items-center gap-2 text-white/80 text-sm">
+                <User className="w-4 h-4" /> {t(lang, 'nav_sign_in')}
+              </button>
+            )}
           </div>
         </div>
       )}
