@@ -61,7 +61,7 @@ export default function Navbar() {
             </Link>
             {user ?
             <div className="hidden sm:flex items-center gap-2">
-                <span className="text-white/80 text-xs hidden md:block">{user.full_name || user.email}</span>
+                
                 <button
                 onClick={() => base44.auth.logout()}
                 className="flex flex-col items-center text-white/80 hover:text-white transition-colors"
