@@ -52,18 +52,18 @@ export default function Navbar() {
           {/* Right Actions */}
           <div className="flex items-center gap-3">
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
-              <Heart className="w-5 h-5" />
+              <Heart className="text-[hsl(var(--foreground))] lucide lucide-heart w-5 h-5" />
               <span className="text-[10px] mt-0.5">{t(lang, 'nav_saved')}</span>
             </button>
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
-              <User className="w-5 h-5" />
+              <User className="text-[hsl(var(--foreground))] lucide lucide-user w-5 h-5" />
               <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_in')}</span>
             </button>
             {/* Language switcher */}
             <div className="relative" ref={langRef}>
               <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 text-white/90 hover:text-white text-sm font-semibold px-2 py-1 rounded transition-colors">
+                onClick={() => setLangOpen(!langOpen)} className="text-[hsl(var(--foreground))] px-2 py-1 text-sm font-semibold rounded flex items-center gap-1 hover:text-white transition-colors">
+                
                 
                 {LANGUAGES.find((l) => l.code === lang)?.label}
                 <ChevronDown className="w-3 h-3" />
