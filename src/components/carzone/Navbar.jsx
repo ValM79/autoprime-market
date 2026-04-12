@@ -83,7 +83,7 @@ export default function Navbar() {
             {/* Language switcher */}
             <div className="relative" ref={langRef}>
               <button
-                onClick={() => setLangOpen(!langOpen)} className="text-[hsl(var(--foreground))] px-2 py-1 text-sm font-semibold rounded flex items-center gap-1 hover:text-white transition-colors">
+                onClick={() => setLangOpen(!langOpen)} className="text-[hsl(var(--destructive))] px-2 py-1 text-sm font-semibold rounded flex items-center gap-1 hover:text-white transition-colors">
                 
                 
                 {LANGUAGES.find((l) => l.code === lang)?.label}
