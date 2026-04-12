@@ -1,0 +1,37 @@
+{
+  "name": "Favorite",
+  "type": "object",
+  "properties": {
+    "car_id": {
+      "type": "number",
+      "title": "Car ID"
+    },
+    "car_name": {
+      "type": "string",
+      "title": "Car Name"
+    },
+    "car_year": {
+      "type": "string",
+      "title": "Car Year"
+    },
+    "car_price": {
+      "type": "string",
+      "title": "Car Price"
+    },
+    "car_km": {
+      "type": "string",
+      "title": "Car KM"
+    },
+    "car_fuel": {
+      "type": "string",
+      "title": "Car Fuel"
+    },
+    "car_image": {
+      "type": "string",
+      "title": "Car Image"
+    }
+  },
+  "required": [
+    "car_id"
+  ]
+}

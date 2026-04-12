@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLang } from '@/lib/LangContext';
 import { t } from '@/lib/i18n';
-import { GitCompare } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
+import { GitCompare, Heart, MessageSquare } from 'lucide-react';
+import ContactModal from './ContactModal';
 
 const CAR_IMAGES = [
   'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/c66d362f5_generated_9b845e77.png',
@@ -104,7 +106,29 @@ export const SAMPLE_CARS = [
 
 export default function CarListings({ selectedIds, onToggleCompare }) {
   const { lang } = useLang();
+  const [favoriteIds, setFavoriteIds] = useState(new Set());
+  const [contactCar, setContactCar] = useState(null);
+
+  useEffect(() => {
+    base44.entities.Favorite.list('-created_date', 100).then(favs => {
+      setFavoriteIds(new Set(favs.map(f => f.car_id)));
+    }).catch(() => {});
+  }, []);
+
+  const toggleFavorite = async (car) => {
+    const isFav = favoriteIds.has(car.id);
+    if (isFav) {
+      const favs = await base44.entities.Favorite.filter({ car_id: car.id });
+      for (const f of favs) await base44.entities.Favorite.delete(f.id);
+      setFavoriteIds(prev => { const s = new Set(prev); s.delete(car.id); return s; });
+    } else {
+      await base44.entities.Favorite.create({ car_id: car.id, car_name: car.name, car_year: car.year, car_price: car.price, car_km: car.km, car_fuel: car.fuel, car_image: car.image });
+      setFavoriteIds(prev => new Set([...prev, car.id]));
+    }
+  };
+
   return (
+    <>
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">{t(lang, 'listings_title')}</h2>
       <p className="text-muted-foreground mb-8">{t(lang, 'listings_subtitle')}</p>
@@ -129,6 +153,24 @@ export default function CarListings({ selectedIds, onToggleCompare }) {
                 />
                 <div className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded">
                   {car.year}
+                </div>
+                <div className="absolute bottom-3 right-3 flex gap-1.5">
+                  <button
+                    onClick={() => setContactCar(car)}
+                    className="w-8 h-8 rounded-full bg-white shadow flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                    title={t(lang, 'contact_title')}
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => toggleFavorite(car)}
+                    className={`w-8 h-8 rounded-full shadow flex items-center justify-center transition-colors ${
+                      favoriteIds.has(car.id) ? 'bg-rose-500 text-white' : 'bg-white text-foreground hover:bg-rose-500 hover:text-white'
+                    }`}
+                    title={t(lang, 'save_favorite')}
+                  >
+                    <Heart className={`w-3.5 h-3.5 ${favoriteIds.has(car.id) ? 'fill-white' : ''}`} />
+                  </button>
                 </div>
                 <button
                   onClick={() => !isDisabled && onToggleCompare(car.id)}
@@ -155,5 +197,7 @@ export default function CarListings({ selectedIds, onToggleCompare }) {
         })}
       </div>
     </section>
+    {contactCar && <ContactModal car={{ ...contactCar, dealer: { name: 'AntRatu Dealer', phone: '+370 600 12345', email: 'info@antratu.lt' } }} onClose={() => setContactCar(null)} />}
+    </>
   );
 }

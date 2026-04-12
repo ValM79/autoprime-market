@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLang } from '@/lib/LangContext';
 import { t } from '@/lib/i18n';
+import AdvancedFilters from './AdvancedFilters';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
@@ -14,6 +15,8 @@ const prices = ['€5,000', '€10,000', '€15,000', '€20,000', '€25,000', 
 
 export default function HeroSearch() {
   const { lang } = useLang();
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [advFilters, setAdvFilters] = useState({});
   return (
     <section className="relative overflow-hidden">
       {/* Background image */}
@@ -98,6 +101,14 @@ export default function HeroSearch() {
                 {t(lang, 'hero_search')}
               </Button>
             </div>
+            <button
+              type="button"
+              onClick={() => setShowAdvanced(p => !p)}
+              className="text-xs text-primary font-semibold hover:underline mt-1 text-left"
+            >
+              {showAdvanced ? t(lang, 'filter_hide_advanced') : t(lang, 'filter_show_advanced')}
+            </button>
+            {showAdvanced && <AdvancedFilters filters={advFilters} onChange={setAdvFilters} />}
           </div>
 
           {/* Right side CTA */}

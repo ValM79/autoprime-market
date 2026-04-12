@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, User, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLang } from '@/lib/LangContext';
@@ -51,10 +52,10 @@ export default function Navbar() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
-            <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
+            <Link to="/saved" className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <Heart className="w-5 h-5" />
               <span className="text-[10px] mt-0.5">{t(lang, 'nav_saved')}</span>
-            </button>
+            </Link>
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <User className="w-5 h-5" />
               <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_in')}</span>
