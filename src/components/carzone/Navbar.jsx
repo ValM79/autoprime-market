@@ -34,7 +34,7 @@ export default function Navbar() {
         <div className="text-[hsl(var(--foreground))] flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-1">
-            <span className="text-[hsl(var(--foreground))] text-2xl font-medium capitalize tracking-tight">AntRatu</span>
+            <span className="text-[hsl(var(--foreground))] text-3xl font-light capitalize tracking-tight">AntRatu</span>
             <svg className="text-[hsl(var(--foreground))] mt-0.5 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17l9.2-9.2M17 17V7H7" />
             </svg>
