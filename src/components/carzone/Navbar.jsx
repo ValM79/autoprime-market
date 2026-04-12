@@ -29,7 +29,7 @@ export default function Navbar() {
 
 
   return (
-    <nav className="bg-primary sticky top-0 z-50">
+    <nav className="bg-[hsl(var(--background))] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-[hsl(var(--foreground))] flex items-center justify-between h-16">
           {/* Logo */}
