@@ -68,7 +68,7 @@ export default function Navbar() {
                 title="Logout">
                 
                   <LogOut className="text-[hsl(var(--foreground))] lucide lucide-log-out w-5 h-5" />
-                  <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_out')}</span>
+                  <span className="text-[#e90707] mt-0.5">{t(lang, 'nav_sign_out')}</span>
                 </button>
               </div> :
 
