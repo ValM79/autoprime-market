@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link to="/saved" className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <Heart className="text-[hsl(var(--destructive))] lucide lucide-heart w-5 h-5" />
-              <span className="text-[10px] mt-0.5">{t(lang, 'nav_saved')}</span>
+              <span className="text-[#f00a0a] mt-0.5">{t(lang, 'nav_saved')}</span>
             </Link>
             {user ?
             <div className="hidden sm:flex items-center gap-2">
