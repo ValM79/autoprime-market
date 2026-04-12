@@ -67,7 +67,7 @@ export default function Navbar() {
                 className="flex flex-col items-center text-white/80 hover:text-white transition-colors"
                 title="Logout">
                 
-                  <LogOut className="w-5 h-5" />
+                  <LogOut className="text-[hsl(var(--foreground))] lucide lucide-log-out w-5 h-5" />
                   <span className="text-[10px] mt-0.5">{t(lang, 'nav_sign_out')}</span>
                 </button>
               </div> :
