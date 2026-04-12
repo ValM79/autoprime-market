@@ -40,8 +40,8 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
             <button
-              key={link.label}
-              className="text-white/90 hover:text-white px-3 py-2 text-sm font-medium flex items-center gap-1 transition-colors">
+              key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-white flex items-center gap-1 transition-colors">
+              
               
                 {link.label}
                 {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5" />}
