@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import Navbar from '../components/carzone/Navbar';
-import QuickLinks from '../components/carzone/QuickLinks';
-import HeroSearch from '../components/carzone/HeroSearch';
-import BrowseByCategory from '../components/carzone/BrowseByCategory';
-import HubsSection from '../components/carzone/HubsSection';
-import ReviewsSection from '../components/carzone/ReviewsSection';
-import ElectricSection from '../components/carzone/ElectricSection';
-import PopularMakes from '../components/carzone/PopularMakes';
-import Footer from '../components/carzone/Footer';
-import CarListings from '../components/carzone/CarListings';
-import CompareBar from '../components/carzone/CompareBar';
-import CompareModal from '../components/carzone/CompareModal';
-import { SAMPLE_CARS } from '../components/carzone/CarListings';
+import Navbar from '../components/antratu/Navbar';
+import QuickLinks from '../components/antratu/QuickLinks';
+import HeroSearch from '../components/antratu/HeroSearch';
+import BrowseByCategory from '../components/antratu/BrowseByCategory';
+import HubsSection from '../components/antratu/HubsSection';
+import ReviewsSection from '../components/antratu/ReviewsSection';
+import ElectricSection from '../components/antratu/ElectricSection';
+import PopularMakes from '../components/antratu/PopularMakes';
+import Footer from '../components/antratu/Footer';
+import CarListings from '../components/antratu/CarListings';
+import CompareBar from '../components/antratu/CompareBar';
+import CompareModal from '../components/antratu/CompareModal';
+import { SAMPLE_CARS } from '../components/antratu/CarListings';
 
 export default function Home() {
   const [selectedIds, setSelectedIds] = useState([]);

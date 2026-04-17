@@ -12,96 +12,12 @@ const CAR_IMAGES = [
 ];
 
 export const SAMPLE_CARS = [
-  {
-    id: 1,
-    year: '2022',
-    name: 'Volkswagen Golf',
-    km: '34,200km',
-    fuel: '1.5 Petrol',
-    transmission: 'Automatic',
-    bodyType: 'Hatchback',
-    engine: '1.5L',
-    color: 'White',
-    owners: '1',
-    nct: 'Jan 2026',
-    price: '€24,900',
-    image: CAR_IMAGES[0],
-  },
-  {
-    id: 2,
-    year: '2021',
-    name: 'Toyota Corolla',
-    km: '51,000km',
-    fuel: '1.8 Hybrid',
-    transmission: 'Automatic',
-    bodyType: 'Saloon',
-    engine: '1.8L',
-    color: 'Silver',
-    owners: '2',
-    nct: 'Mar 2025',
-    price: '€21,500',
-    image: CAR_IMAGES[1],
-  },
-  {
-    id: 3,
-    year: '2023',
-    name: 'BMW 3 Series',
-    km: '18,400km',
-    fuel: '2.0 Diesel',
-    transmission: 'Automatic',
-    bodyType: 'Saloon',
-    engine: '2.0L',
-    color: 'Black',
-    owners: '1',
-    nct: 'Jun 2027',
-    price: '€42,000',
-    image: CAR_IMAGES[2],
-  },
-  {
-    id: 4,
-    year: '2020',
-    name: 'Ford Focus',
-    km: '72,100km',
-    fuel: '1.0 Petrol',
-    transmission: 'Manual',
-    bodyType: 'Hatchback',
-    engine: '1.0L',
-    color: 'Blue',
-    owners: '2',
-    nct: 'Sep 2025',
-    price: '€14,750',
-    image: CAR_IMAGES[0],
-  },
-  {
-    id: 5,
-    year: '2022',
-    name: 'Hyundai Tucson',
-    km: '29,800km',
-    fuel: '1.6 Hybrid',
-    transmission: 'Automatic',
-    bodyType: 'SUV',
-    engine: '1.6L',
-    color: 'Grey',
-    owners: '1',
-    nct: 'Nov 2026',
-    price: '€32,500',
-    image: CAR_IMAGES[1],
-  },
-  {
-    id: 6,
-    year: '2021',
-    name: 'Skoda Octavia',
-    km: '44,600km',
-    fuel: '1.5 Petrol',
-    transmission: 'Manual',
-    bodyType: 'Estate',
-    engine: '1.5L',
-    color: 'Red',
-    owners: '1',
-    nct: 'May 2026',
-    price: '€19,900',
-    image: CAR_IMAGES[2],
-  },
+  { id: 1, year: '2022', name: 'Volkswagen Golf', km: '34,200km', fuel: '1.5 Petrol', transmission: 'Automatic', bodyType: 'Hatchback', engine: '1.5L', color: 'White', owners: '1', nct: 'Jan 2026', price: '€24,900', image: CAR_IMAGES[0] },
+  { id: 2, year: '2021', name: 'Toyota Corolla', km: '51,000km', fuel: '1.8 Hybrid', transmission: 'Automatic', bodyType: 'Saloon', engine: '1.8L', color: 'Silver', owners: '2', nct: 'Mar 2025', price: '€21,500', image: CAR_IMAGES[1] },
+  { id: 3, year: '2023', name: 'BMW 3 Series', km: '18,400km', fuel: '2.0 Diesel', transmission: 'Automatic', bodyType: 'Saloon', engine: '2.0L', color: 'Black', owners: '1', nct: 'Jun 2027', price: '€42,000', image: CAR_IMAGES[2] },
+  { id: 4, year: '2020', name: 'Ford Focus', km: '72,100km', fuel: '1.0 Petrol', transmission: 'Manual', bodyType: 'Hatchback', engine: '1.0L', color: 'Blue', owners: '2', nct: 'Sep 2025', price: '€14,750', image: CAR_IMAGES[0] },
+  { id: 5, year: '2022', name: 'Hyundai Tucson', km: '29,800km', fuel: '1.6 Hybrid', transmission: 'Automatic', bodyType: 'SUV', engine: '1.6L', color: 'Grey', owners: '1', nct: 'Nov 2026', price: '€32,500', image: CAR_IMAGES[1] },
+  { id: 6, year: '2021', name: 'Skoda Octavia', km: '44,600km', fuel: '1.5 Petrol', transmission: 'Manual', bodyType: 'Estate', engine: '1.5L', color: 'Red', owners: '1', nct: 'May 2026', price: '€19,900', image: CAR_IMAGES[2] },
 ];
 
 export default function CarListings({ selectedIds, onToggleCompare }) {
@@ -146,14 +62,8 @@ export default function CarListings({ selectedIds, onToggleCompare }) {
               }`}
             >
               <div className="relative overflow-hidden aspect-[4/3]">
-                <img
-                  src={car.image}
-                  alt={car.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded">
-                  {car.year}
-                </div>
+                <img src={car.image} alt={car.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded">{car.year}</div>
                 <div className="absolute bottom-3 right-3 flex gap-1.5">
                   <button
                     onClick={() => setContactCar(car)}
@@ -176,11 +86,7 @@ export default function CarListings({ selectedIds, onToggleCompare }) {
                   onClick={() => !isDisabled && onToggleCompare(car.id)}
                   disabled={isDisabled}
                   className={`absolute top-3 right-3 flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full shadow transition-all ${
-                    isSelected
-                      ? 'bg-primary text-white'
-                      : isDisabled
-                      ? 'bg-white/70 text-muted-foreground cursor-not-allowed'
-                      : 'bg-white text-foreground hover:bg-primary hover:text-white'
+                    isSelected ? 'bg-primary text-white' : isDisabled ? 'bg-white/70 text-muted-foreground cursor-not-allowed' : 'bg-white text-foreground hover:bg-primary hover:text-white'
                   }`}
                 >
                   <GitCompare className="w-3.5 h-3.5" />

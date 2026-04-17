@@ -123,15 +123,10 @@ export default function PopularMakes() {
   const { lang } = useLang();
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-8">
-        {t(lang, 'makes_title')}
-      </h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-8">{t(lang, 'makes_title')}</h2>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
         {makes.map((make) => (
-          <button
-            key={make.name}
-            className="flex flex-col items-center justify-center bg-card rounded-xl border border-border p-4 hover:border-primary/40 hover:shadow-md transition-all duration-200 group"
-          >
+          <button key={make.name} className="flex flex-col items-center justify-center bg-card rounded-xl border border-border p-4 hover:border-primary/40 hover:shadow-md transition-all duration-200 group">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
               <span className="text-primary font-bold text-sm">{make.name[0]}</span>
             </div>

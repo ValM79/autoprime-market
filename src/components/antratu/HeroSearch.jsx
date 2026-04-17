@@ -17,9 +17,9 @@ export default function HeroSearch() {
   const { lang } = useLang();
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [advFilters, setAdvFilters] = useState({});
+
   return (
     <section className="relative overflow-hidden">
-      {/* Background image */}
       <div className="absolute inset-0">
         <img src={HERO_IMAGE} alt="Family with blue car" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
@@ -27,11 +27,8 @@ export default function HeroSearch() {
 
       <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
-          {/* Search form */}
           <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-md">
-            <h1 className="text-xl md:text-2xl font-bold text-foreground mb-5">
-              {t(lang, 'hero_title')}
-            </h1>
+            <h1 className="text-xl md:text-2xl font-bold text-foreground mb-5">{t(lang, 'hero_title')}</h1>
             <div className="grid grid-cols-2 gap-3">
               <Select>
                 <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm">
@@ -111,12 +108,9 @@ export default function HeroSearch() {
             {showAdvanced && <AdvancedFilters filters={advFilters} onChange={setAdvFilters} />}
           </div>
 
-          {/* Right side CTA */}
           <div className="hidden lg:flex flex-col items-end gap-6 text-white pt-8">
             <div className="text-right">
-              <h2 className="text-3xl xl:text-4xl font-bold leading-tight drop-shadow-lg">
-                {t(lang, 'hero_tagline')}
-              </h2>
+              <h2 className="text-3xl xl:text-4xl font-bold leading-tight drop-shadow-lg">{t(lang, 'hero_tagline')}</h2>
             </div>
             <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg px-8 h-12 text-base shadow-lg">
               {t(lang, 'hero_value_car')}

@@ -16,12 +16,8 @@ export default function ElectricSection() {
       </div>
       <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div className="max-w-xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            {t(lang, 'electric_title')}
-          </h2>
-          <p className="text-white/80 text-sm md:text-base mb-8 leading-relaxed">
-            {t(lang, 'electric_desc')}
-          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{t(lang, 'electric_title')}</h2>
+          <p className="text-white/80 text-sm md:text-base mb-8 leading-relaxed">{t(lang, 'electric_desc')}</p>
           <div className="flex flex-wrap gap-3">
             <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg px-6 h-11">
               <Zap className="w-4 h-4 mr-2" />

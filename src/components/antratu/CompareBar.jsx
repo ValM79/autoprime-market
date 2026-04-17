@@ -14,27 +14,16 @@ export default function CompareBar({ cars, onRemove, onCompare, onClear }) {
         <div className="flex items-center gap-2 flex-1 overflow-x-auto">
           <span className="text-sm font-semibold text-white/70 shrink-0">{t(lang, 'comparebar_label')} ({cars.length}/4):</span>
           {cars.map((car) => (
-            <div
-              key={car.id}
-              className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-1.5 shrink-0"
-            >
-              <span className="text-sm font-medium text-white whitespace-nowrap">
-                {car.year} {car.name}
-              </span>
-              <button
-                onClick={() => onRemove(car.id)}
-                className="text-white/50 hover:text-white transition-colors"
-              >
+            <div key={car.id} className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-1.5 shrink-0">
+              <span className="text-sm font-medium text-white whitespace-nowrap">{car.year} {car.name}</span>
+              <button onClick={() => onRemove(car.id)} className="text-white/50 hover:text-white transition-colors">
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
           ))}
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={onClear}
-            className="text-xs text-white/50 hover:text-white transition-colors"
-          >
+          <button onClick={onClear} className="text-xs text-white/50 hover:text-white transition-colors">
             {t(lang, 'comparebar_clear')}
           </button>
           <Button

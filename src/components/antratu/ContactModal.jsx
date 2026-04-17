@@ -15,7 +15,6 @@ export default function ContactModal({ car, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate sending
     await new Promise(r => setTimeout(r, 1000));
     setLoading(false);
     setSent(true);
@@ -24,7 +23,6 @@ export default function ContactModal({ car, onClose }) {
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="bg-background rounded-2xl shadow-2xl w-full max-w-md">
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div>
             <h2 className="text-lg font-bold text-foreground">{t(lang, 'contact_title')}</h2>
@@ -35,7 +33,6 @@ export default function ContactModal({ car, onClose }) {
           </button>
         </div>
 
-        {/* Dealer info */}
         <div className="px-6 pt-4 pb-2 bg-secondary/40 border-b border-border">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">{t(lang, 'contact_dealer')}</p>
           <p className="font-semibold text-foreground text-sm">{car.dealer?.name || 'AntRatu Dealer'}</p>
@@ -62,45 +59,20 @@ export default function ContactModal({ car, onClose }) {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-xs font-medium text-muted-foreground mb-1 block">{t(lang, 'contact_name')} *</label>
-                  <input
-                    required
-                    value={form.name}
-                    onChange={e => set('name', e.target.value)}
-                    className="w-full h-10 px-3 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                    placeholder="John Doe"
-                  />
+                  <input required value={form.name} onChange={e => set('name', e.target.value)} className="w-full h-10 px-3 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="John Doe" />
                 </div>
                 <div>
                   <label className="text-xs font-medium text-muted-foreground mb-1 block">{t(lang, 'contact_phone')}</label>
-                  <input
-                    value={form.phone}
-                    onChange={e => set('phone', e.target.value)}
-                    className="w-full h-10 px-3 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                    placeholder="+370 600 00000"
-                  />
+                  <input value={form.phone} onChange={e => set('phone', e.target.value)} className="w-full h-10 px-3 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="+370 600 00000" />
                 </div>
               </div>
               <div>
                 <label className="text-xs font-medium text-muted-foreground mb-1 block">{t(lang, 'contact_email')} *</label>
-                <input
-                  required
-                  type="email"
-                  value={form.email}
-                  onChange={e => set('email', e.target.value)}
-                  className="w-full h-10 px-3 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  placeholder="you@example.com"
-                />
+                <input required type="email" value={form.email} onChange={e => set('email', e.target.value)} className="w-full h-10 px-3 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="you@example.com" />
               </div>
               <div>
                 <label className="text-xs font-medium text-muted-foreground mb-1 block">{t(lang, 'contact_message')} *</label>
-                <textarea
-                  required
-                  value={form.message}
-                  onChange={e => set('message', e.target.value)}
-                  rows={4}
-                  className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
-                  placeholder={t(lang, 'contact_message_placeholder')}
-                />
+                <textarea required value={form.message} onChange={e => set('message', e.target.value)} rows={4} className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" placeholder={t(lang, 'contact_message_placeholder')} />
               </div>
               <Button type="submit" disabled={loading} className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg">
                 {loading ? '...' : t(lang, 'contact_send')}
