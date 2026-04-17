@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useLang } from '@/lib/LangContext';
 import { t } from '@/lib/i18n';
 import AdvancedFilters from './AdvancedFilters';
+import { CAR_MODELS } from '@/lib/carModels';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 
 const HERO_IMAGE = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/caf9b03bd_generated_577d304f.png';
 
-const makes = ['-Kita-','A1 PRO','Abarth','AC','Acura','Aito','Aiways','Aixam','Alfa Romeo','Alpina','Aston Martin','Audi','BAW','BELLIER','Bentley','BMW','Bontu','Buick','BYD','Cadillac','Casalini','Cenntro','Chatenet','Chevrolet','Chrysler','Citroen','Cupra','Dacia','Daihatsu','DFSK','Dodge','Dongfeng','DS Automobiles','e.GO','Ferrari','Fiat','Fisker','Ford','Forthing','GAZ','Genesis','GMC','GWM','Honda','Hongqi','Hummer','Hyundai','IFA','Infiniti','Isuzu','Iveco','Jaguar','Jeep','KGM','Kia','Lada','Lamborghini','Lancia','Land Rover','Lexus','Ligier','Lincoln','Lotus','LuAZ','Lynk & Co','MAN','Maserati','Maxus','Maybach','Mazda','Mclaren','Mercedes-Benz','Mercury','MG','Microcar','Mini','Mitsubishi','Moskvich','Nissan','Opel','Peugeot','Piaggio','Plymouth','Polestar','Pontiac','Porsche','RAM','Renault','Rolls-Royce','Rover','Saab','Seat','Seres','Shuanghuan','Skoda','Skut','Smart','SsangYong','Subaru','Suzuki','Tesla','Toyota','Trabant','UAZ','Vauxhall','Volkswagen','Volvo','Voyah','Wartburg','XEV','Xpeng','ZAZ','Zeekr','Zhidou'];
+const makes = Object.keys(CAR_MODELS);
 const bodyTypes = ['Convertible', 'Coupe', 'Estate', 'Hatchback', 'MPV', 'Pickup', 'Saloon', 'SUV', 'Van'];
 const years = Array.from({ length: 28 }, (_, i) => String(2027 - i));
 const prices = ['€5,000', '€10,000', '€15,000', '€20,000', '€25,000', '€30,000', '€40,000', '€50,000', '€60,000', '€75,000', '€100,000'];
@@ -17,6 +18,7 @@ export default function HeroSearch() {
   const { lang } = useLang();
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [advFilters, setAdvFilters] = useState({});
+  const [selectedMake, setSelectedMake] = useState('');
 
   return (
     <section className="relative overflow-hidden">
@@ -30,7 +32,7 @@ export default function HeroSearch() {
           <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-md">
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-5">{t(lang, 'hero_title')}</h1>
             <div className="grid grid-cols-2 gap-3">
-              <Select>
+              <Select value={selectedMake} onValueChange={(v) => setSelectedMake(v)}>
                 <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm">
                   <SelectValue placeholder={t(lang, 'hero_make')} />
                 </SelectTrigger>
@@ -39,12 +41,12 @@ export default function HeroSearch() {
                 </SelectContent>
               </Select>
 
-              <Select disabled>
-                <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm opacity-50">
+              <Select disabled={!selectedMake}>
+                <SelectTrigger className={`col-span-1 h-11 bg-secondary border-0 text-sm ${!selectedMake ? 'opacity-50' : ''}`}>
                   <SelectValue placeholder={t(lang, 'hero_model')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="any">Any</SelectItem>
+                  {(CAR_MODELS[selectedMake] || []).map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
                 </SelectContent>
               </Select>
 
