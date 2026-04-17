@@ -19,6 +19,7 @@ export default function HeroSearch() {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [advFilters, setAdvFilters] = useState({});
   const [selectedMake, setSelectedMake] = useState('');
+  const [activeTab, setActiveTab] = useState('Cars & Motor');
 
   return (
     <section className="relative overflow-hidden">
@@ -29,8 +30,24 @@ export default function HeroSearch() {
 
       <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
-          <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-md">
-            <h1 className="text-xl md:text-2xl font-bold text-foreground mb-5">{t(lang, 'hero_title')}</h1>
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
+            {/* Tab navigation */}
+            <div className="flex border-b border-border">
+              {['Cars & Motor', 'Marketplace', 'Agri & Plant'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`flex-1 py-3.5 text-sm font-semibold transition-colors whitespace-nowrap ${
+                    activeTab === tab
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+            <div className="p-6 md:p-8">
             <div className="grid grid-cols-2 gap-3">
               <Select value={selectedMake} onValueChange={(v) => setSelectedMake(v)}>
                 <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm">
@@ -108,6 +125,7 @@ export default function HeroSearch() {
               {showAdvanced ? t(lang, 'filter_hide_advanced') : t(lang, 'filter_show_advanced')}
             </button>
             {showAdvanced && <AdvancedFilters filters={advFilters} onChange={setAdvFilters} />}
+            </div>
           </div>
 
           <div className="hidden lg:flex flex-col items-end gap-6 text-white pt-8">
