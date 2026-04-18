@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/antratu/Navbar';
 import QuickLinks from '../components/antratu/QuickLinks';
 import HeroSearch from '../components/antratu/HeroSearch';
-import FeaturedDealer from '../components/antratu/FeaturedDealer';
+import BrowseByCategory from '../components/antratu/BrowseByCategory';
 import HubsSection from '../components/antratu/HubsSection';
 import ReviewsSection from '../components/antratu/ReviewsSection';
 import ElectricSection from '../components/antratu/ElectricSection';
@@ -31,7 +31,7 @@ export default function Home() {
         <QuickLinks />
       </div>
       <HeroSearch />
-      <FeaturedDealer />
+      <BrowseByCategory />
       <CarListings selectedIds={selectedIds} onToggleCompare={toggleCompare} />
       <HubsSection />
       <ReviewsSection />
