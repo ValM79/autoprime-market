@@ -49,12 +49,12 @@ export default function Navbar() {
               <User className="text-[hsl(var(--foreground))] lucide lucide-user w-5 h-5" />
               <span className="text-[#0d0c0c] mt-0.5">Sign in</span>
             </button>
+            
             <Button
-              variant="outline" className="bg-transparent text-[hsl(var(--foreground))] px-5 py-2 text-sm font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:bg-secondary hover:text-destructive">
-              
-              
+              variant="outline" className="bg-transparent text-[hsl(var(--foreground))] px-5 py-2 text-sm font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm hover:bg-secondary hover:text-destructive">  
               Sign up or Login
             </Button>
+
             <button
               className="lg:hidden text-white"
               onClick={() => setMobileOpen(!mobileOpen)}>
