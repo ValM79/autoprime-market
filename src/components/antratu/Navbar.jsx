@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'Buy', hasDropdown: true },
-    { label: 'New cars', hasDropdown: true },
+    { label: 'Sell', hasDropdown: true },
     { label: 'Dealers', hasDropdown: true },
     { label: 'Reviews & more', hasDropdown: true },
     { label: 'Car insurance', hasDropdown: false },
