@@ -112,7 +112,7 @@ export default function HeroSearch() {
       <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-16 lg:py-20">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
           <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-md">
-            <h1 className="text-foreground mb-5 text-base font-medium md:text-2xl">Cars & Motor
+            <h1 className="text-foreground mb-5 text-xs font-normal underline md:text-2xl">Cars & Motor
 
             </h1>
             <div className="grid grid-cols-2 gap-3">
