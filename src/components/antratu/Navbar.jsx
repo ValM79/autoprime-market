@@ -10,7 +10,7 @@ export default function Navbar() {
   { label: 'Sell', hasDropdown: true },
   { label: 'Dealers', hasDropdown: true },
   { label: 'Car Rent', hasDropdown: true },
-  { label: 'Car insurance', hasDropdown: false }];
+  { label: 'Car insurance', hasDropdown: true }];
 
 
   return (
