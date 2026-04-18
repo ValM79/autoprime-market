@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-1">
-            <span className="text-[hsl(var(--foreground))] text-lg font-semibold tracking-tight">Ant</span>
+            <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Ant</span>
             <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Ratu</span>
             <svg className="text-[hsl(var(--foreground))] mt-0.5 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17l9.2-9.2M17 17V7H7" />
