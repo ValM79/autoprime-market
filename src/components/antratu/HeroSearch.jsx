@@ -5,7 +5,7 @@ import { Search } from 'lucide-react';
 
 const HERO_IMAGE = 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/caf9b03bd_generated_577d304f.png';
 
-const makes = ['Audi', 'BMW', 'Citroen', 'Dacia', 'Fiat', 'Ford', 'Honda', 'Hyundai', 'Kia', 'Land Rover', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Opel', 'Peugeot', 'Renault', 'Skoda', 'Tesla', 'Toyota', 'Volkswagen', 'Volvo'];
+const makes = ['-Kita-','A1 PRO','Abarth','AC','Acura','Aito','Aiways','Aixam','Alfa Romeo','Alpina','Aston Martin','Audi','BAW','BELLIER','Bentley','BMW','Bontu','Buick','BYD','Cadillac','Casalini','Cenntro','Chatenet','Chevrolet','Chrysler','Citroen','Cupra','Dacia','Daihatsu','DFSK','Dodge','Dongfeng','DS Automobiles','e.GO','Ferrari','Fiat','Fisker','Ford','Forthing','GAZ','Genesis','GMC','GWM','Honda','Hongqi','Hummer','Hyundai','IFA','Infiniti','Isuzu','Iveco','Jaguar','Jeep','KGM','Kia','Lada','Lamborghini','Lancia','Land Rover','Lexus','Ligier','Lincoln','Lotus','LuAZ','Lynk & Co','MAN','Maserati','Maxus','Maybach','Mazda','Mclaren','Mercedes-Benz','Mercury','MG','Microcar','Mini','Mitsubishi','Moskvich','Nissan','Opel','Peugeot','Piaggio','Plymouth','Polestar','Pontiac','Porsche','RAM','Renault','Rolls-Royce','Rover','Saab','Seat','Seres','Shuanghuan','Skoda','Skut','Smart','SsangYong','Subaru','Suzuki','Tesla','Toyota','Trabant','UAZ','Vauxhall','Volkswagen','Volvo','Voyah','Wartburg','XEV','Xpeng','ZAZ','Zeekr','Zhidou'];
 const bodyTypes = ['Convertible', 'Coupe', 'Estate', 'Hatchback', 'MPV', 'Pickup', 'Saloon', 'SUV', 'Van'];
 const years = Array.from({ length: 28 }, (_, i) => String(2027 - i));
 const prices = ['€5,000', '€10,000', '€15,000', '€20,000', '€25,000', '€30,000', '€40,000', '€50,000', '€60,000', '€75,000', '€100,000'];
