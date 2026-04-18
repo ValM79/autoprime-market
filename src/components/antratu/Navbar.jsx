@@ -82,7 +82,7 @@ export default function Navbar() {
               <Heart className="w-2 h-2" /> Saved
             </button>
             <button className="flex items-center gap-2 text-white/80 text-sm">
-              <User className="w-4 h-4" /> Sign in
+              <User className="w-6 h-6" /> Sign in
             </button>
           </div>
         </div>
