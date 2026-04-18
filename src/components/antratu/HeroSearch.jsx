@@ -113,7 +113,7 @@ export default function HeroSearch() {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
           <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-md">
             <h1 className="text-xl md:text-2xl font-bold text-foreground mb-5">
-              Search for cars in Ireland
+              Cars & Motor
             </h1>
             <div className="grid grid-cols-2 gap-3">
               <Select onValueChange={(v) => { setSelectedMake(v); }}>
