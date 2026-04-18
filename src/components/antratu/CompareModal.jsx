@@ -20,7 +20,6 @@ export default function CompareModal({ cars, onClose }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
       <div className="bg-background rounded-2xl shadow-2xl w-full max-w-5xl mt-8 mb-8">
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <h2 className="text-xl font-bold text-foreground">Car Comparison</h2>
           <button
@@ -31,7 +30,6 @@ export default function CompareModal({ cars, onClose }) {
           </button>
         </div>
 
-        {/* Car images + names */}
         <div className="grid border-b border-border" style={{ gridTemplateColumns: `200px repeat(${cars.length}, 1fr)` }}>
           <div className="p-4 bg-secondary/50" />
           {cars.map((car) => (
@@ -45,10 +43,8 @@ export default function CompareModal({ cars, onClose }) {
           ))}
         </div>
 
-        {/* Spec rows */}
         {SPECS.map((spec, i) => {
           const values = cars.map((c) => c[spec.key]);
-          const allSame = values.every((v) => v === values[0]);
 
           return (
             <div

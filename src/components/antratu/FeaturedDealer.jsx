@@ -44,7 +44,6 @@ export default function FeaturedDealer() {
         <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5" /> Stock: 29</span>
       </div>
 
-      {/* Car carousel */}
       <div className="relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {cars.map((car, idx) => (
@@ -75,7 +74,6 @@ export default function FeaturedDealer() {
           ))}
         </div>
 
-        {/* Nav arrows */}
         <button
           onClick={prev}
           className="absolute -left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-secondary transition-colors hidden md:flex"
