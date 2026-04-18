@@ -46,7 +46,7 @@ export default function Navbar() {
               <span className="text-black mt-0.5">Saved</span>
             </button>
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
-              <User className="text-[hsl(var(--foreground))] lucide lucide-user w-2 h-2" />
+              <User className="text-[hsl(var(--foreground))] lucide lucide-user w-5 h-5" />
               <span className="text-[10px] mt-0.5">Sign in</span>
             </button>
             <Button
