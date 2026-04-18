@@ -6,7 +6,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Buy my ', hasDropdown: true },
+    { label: 'Buy', hasDropdown: true },
     { label: 'Sell', hasDropdown: true },
     { label: 'Dealers', hasDropdown: true },
     { label: 'Car Rent', hasDropdown: true },
