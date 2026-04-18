@@ -43,18 +43,18 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <Heart className="text-[hsl(var(--foreground))] lucide lucide-heart w-5 h-5" />
-              <span className="text-black [10px] mt-0.5">Saved</span>
+              <span className="text-black mt-0.5">Saved</span>
             </button>
             <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
               <User className="text-[hsl(var(--foreground))] lucide lucide-user w-5 h-5" />
-              <span className="text-[#0f0f0f] mt-0.5">Sign in</span>
+              <span className="text-[10px] mt-0.5">Sign in</span>
             </button>
+
             <Button
               variant="outline" className="bg-transparent text-[hsl(var(--foreground))] px-5 py-2 text-sm font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border shadow-sm border-white hover:bg-white hover:text-primary h-9">
-              
-              
-              Sell my car
+             Sell my car
             </Button>
+
             <button
               className="lg:hidden text-white"
               onClick={() => setMobileOpen(!mobileOpen)}>
