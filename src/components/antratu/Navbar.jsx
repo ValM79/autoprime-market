@@ -78,7 +78,7 @@ export default function Navbar() {
             </button>
         )}
           <div className="flex gap-6 px-6 pt-3 border-t border-white/10 mt-2">
-            <button className="flex items-center gap-2 text-white/80 text-sm">
+            <button className="flex items-center gap-4 text-white/80 text-sm">
               <Heart className="w-4 h-4" /> Saved
             </button>
             <button className="flex items-center gap-2 text-white/80 text-sm">
