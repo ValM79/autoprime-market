@@ -94,8 +94,8 @@ const modelsByMake = {
 };
 
 const bodyTypes = ['Convertible', 'Coupe', 'Estate', 'Hatchback', 'MPV', 'Pickup', 'Saloon', 'SUV', 'Van'];
-const years = Array.from({ length: 28 }, (_, i) => String(2027 - i));
-const prices = ['€5,000', '€10,000', '€15,000', '€20,000', '€25,000', '€30,000', '€40,000', '€50,000', '€60,000', '€75,000', '€100,000'];
+const years = Array.from({ length: 2026 - 1900 + 1 }, (_, i) => String(2026 - i));
+const prices = [0,150,300,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,17500,20000,22500,25000,27500,30000,35000,40000,45000,50000,60000,70000,80000,90000,100000,110000,120000].map(p => p === 0 ? '€0' : `€${p.toLocaleString()}`);
 
 export default function HeroSearch() {
   const [selectedMake, setSelectedMake] = useState('');
