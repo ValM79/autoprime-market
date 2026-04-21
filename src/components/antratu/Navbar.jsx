@@ -40,12 +40,12 @@ export default function Navbar() {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-10">
             <button className="hidden sm:flex items-center text-foreground hover:text-primary transition-colors">
               <Search className="w-5 h-5" />
             </button>
 
-            <Button className="bg-transparent border border-foreground text-semibold hover:bg-secondary hover:text-foreground font-semibold rounded-full px-2 h-9 text-sm">
+            <Button className="bg-transparent border border-foreground text-semibold hover:bg-secondary hover:text-foreground font-semibold rounded-full px-10 h-9 text-sm">
               Place Ad
             </Button>
 
