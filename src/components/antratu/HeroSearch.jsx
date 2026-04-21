@@ -117,7 +117,7 @@ export default function HeroSearch() {
             </h1>
             <div className="grid grid-cols-2 gap-3">
               <Select onValueChange={(v) => {setSelectedMake(v);}}>
-                <SelectTrigger className="col-span-1 h-11 bg-foreground border-0 text-sm">
+                <SelectTrigger className="col-span-1 h-11 bg-secondary border-0 text-sm">
                   <SelectValue placeholder="Make" />
                 </SelectTrigger>
                 <SelectContent>
