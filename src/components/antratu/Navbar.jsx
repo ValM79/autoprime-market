@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, User, ChevronDown, Menu, X } from 'lucide-react';
+import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
@@ -41,18 +41,12 @@ export default function Navbar() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
-            <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
-              <Heart className="text-[hsl(var(--foreground))] lucide lucide-heart w-5 h-5" />
-              <span className="text-black [10px] mt-0.5">Saved</span>
-            </button>
-            <button className="hidden sm:flex flex-col items-center text-white/80 hover:text-white transition-colors">
-              <User className="text-[hsl(var(--foreground))] lucide lucide-user w-5 h-5" />
-              <span className="text-[#0d0c0c] mt-0.5">Sign in</span>
+            <button className="hidden sm:flex items-center text-foreground hover:text-primary transition-colors">
+              <Search className="w-5 h-5" />
             </button>
 
-            <Button
-              variant="outline" className=" border-none outline-none bg-transparent text-[hsl(var(--foreground))] px-5 py-2 text-sm font-semibold rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-secondary hover:text-destructive border shadow-sm">  
-              Sign up or Login
+            <Button className="bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background font-semibold rounded-full px-5 h-9 text-sm">
+              Place Ad
             </Button>
 
             <button
@@ -79,10 +73,10 @@ export default function Navbar() {
         )}
           <div className="flex gap-6 px-6 pt-3 border-t border-white/10 mt-2">
             <button className="flex items-center gap-2 text-white/80 text-sm">
-              <Heart className="w-4 h-4" /> Saved
+              <Search className="w-4 h-4" /> Search
             </button>
-            <button className="flex items-center gap-2 text-white/80 text-sm">
-              <User className="w-4 h-4" /> Sign in
+            <button className="flex items-center gap-2 text-white/80 text-sm font-semibold">
+              Place Ad
             </button>
           </div>
         </div>
