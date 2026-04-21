@@ -30,7 +30,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-5">
             {navLinks.map((link) =>
             <button
-              key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-5 transition-colors">
+              key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-10 transition-colors">
               
               
                 {link.label}
