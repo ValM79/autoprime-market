@@ -49,6 +49,10 @@ export default function Navbar() {
               Place Ad
             </Button>
 
+            <button className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
+              Sign up or Login
+            </button>
+
             <button
               className="lg:hidden text-white"
               onClick={() => setMobileOpen(!mobileOpen)}>
