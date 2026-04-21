@@ -27,7 +27,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-9">
+          <div className="hidden lg:flex items-center gap-5">
             {navLinks.map((link) =>
             <button
               key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
