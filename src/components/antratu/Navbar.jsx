@@ -50,7 +50,7 @@ export default function Navbar() {
             </Button>
 
             <button className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
-              Sign up or Login
+              Login or Sign up
             </button>
 
             <button
