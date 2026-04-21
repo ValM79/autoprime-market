@@ -23,61 +23,61 @@ const IMG = {
   caravan: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/fac88e4c9_generated_image.png',
   plant: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/800664dcf_generated_image.png',
   rallyCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
-  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
+  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png'
 };
 
 const categories = [
-  [
-    { label: 'Cars', imgKey: 'car' },
-    { label: 'Commercials', imgKey: 'commercial', highlight: true },
-    { label: 'Scooters', imgKey: 'scooter' },
-    { label: 'Trucks', imgKey: 'truck' },
-    { label: 'Trailers', imgKey: 'trailer' },
-    { label: 'Quads', imgKey: 'quad', highlight: true },
-    { label: 'Modified Cars', imgKey: 'modifiedCar' },
-    { label: 'Car Parts', imgKey: 'carParts' },
-    { label: 'All Cars & Motor', isAllMotor: true, highlight: true },
-  ],
-  [
-    { label: 'Cars from Dealerships', imgKey: 'dealerCars' },
-    { label: 'Vintage Cars', imgKey: 'vintageCar' },
-    { label: 'Vintage Bikes', imgKey: 'vintageBike' },
-    { label: 'Coaches & Buses', imgKey: 'coachBus' },
-    { label: 'Car Extras', imgKey: 'carParts' },
-    { label: 'Boats & Jet Skis', imgKey: 'boat' },
-    { label: 'Breaking & Repairables', imgKey: 'breaking' },
-    { label: 'Motorbike Extras', imgKey: 'motorbikeExtras' },
-  ],
-  [
-    { label: 'New Cars', imgKey: 'newCar' },
-    { label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
-    { label: 'Campers', imgKey: 'camper' },
-    { label: 'Caravans', imgKey: 'caravan' },
-    { label: 'Plant Machinery', imgKey: 'plant', highlight: true },
-    { label: 'Rally Cars', imgKey: 'rallyCar' },
-    { label: 'Boat Extras', imgKey: 'boatExtras' },
-    { label: 'Other Motor', isOther: true },
-  ],
-];
+[
+{ label: 'Cars', imgKey: 'car' },
+{ label: 'Commercials', imgKey: 'commercial', highlight: true },
+{ label: 'Scooters', imgKey: 'scooter' },
+{ label: 'Trucks', imgKey: 'truck' },
+{ label: 'Trailers', imgKey: 'trailer' },
+{ label: 'Quads', imgKey: 'quad', highlight: true },
+{ label: 'Modified Cars', imgKey: 'modifiedCar' },
+{ label: 'Car Parts', imgKey: 'carParts' },
+{ label: 'All Cars & Motor', isAllMotor: true, highlight: true }],
+
+[
+{ label: 'Cars from Dealerships', imgKey: 'dealerCars' },
+{ label: 'Vintage Cars', imgKey: 'vintageCar' },
+{ label: 'Vintage Bikes', imgKey: 'vintageBike' },
+{ label: 'Coaches & Buses', imgKey: 'coachBus' },
+{ label: 'Car Extras', imgKey: 'carParts' },
+{ label: 'Boats & Jet Skis', imgKey: 'boat' },
+{ label: 'Breaking & Repairables', imgKey: 'breaking' },
+{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }],
+
+[
+{ label: 'New Cars', imgKey: 'newCar' },
+{ label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
+{ label: 'Campers', imgKey: 'camper' },
+{ label: 'Caravans', imgKey: 'caravan' },
+{ label: 'Plant Machinery', imgKey: 'plant', highlight: true },
+{ label: 'Rally Cars', imgKey: 'rallyCar' },
+{ label: 'Boat Extras', imgKey: 'boatExtras' },
+{ label: 'Other Motor', isOther: true }]];
+
+
 
 function CategoryIcon({ imgKey, isAllMotor, isOther }) {
   if (isAllMotor) {
     return (
       <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
         <span className="text-white font-bold text-lg">D</span>
-      </div>
-    );
+      </div>);
+
   }
   if (isOther) {
     return (
-      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-muted-foreground text-2xl font-bold">?</div>
-    );
+      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-muted-foreground text-2xl font-bold">?</div>);
+
   }
   return (
     <div className="w-12 h-9 flex items-center justify-center flex-shrink-0">
       <img src={IMG[imgKey]} alt="" className="max-w-full max-h-full object-contain" />
-    </div>
-  );
+    </div>);
+
 }
 
 function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
@@ -85,13 +85,13 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     <button className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
       <div className="flex items-center gap-3">
         <CategoryIcon imgKey={imgKey} isAllMotor={isAllMotor} isOther={isOther} />
-        <span className={`text-sm font-medium ${highlight ? 'text-primary' : 'text-foreground'} group-hover:text-primary transition-colors`}>
+        <span className="text-[hsl(var(--foreground))] text-sm font-medium group-hover:text-primary transition-colors">
           {label}
         </span>
       </div>
       <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-    </button>
-  );
+    </button>);
+
 }
 
 export default function BrowseByCategory() {
@@ -99,14 +99,14 @@ export default function BrowseByCategory() {
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by category</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {categories.map((col, i) => (
-          <div key={i} className="flex flex-col">
-            {col.map((cat) => (
-              <CategoryRow key={cat.label} {...cat} />
-            ))}
+        {categories.map((col, i) =>
+        <div key={i} className="flex flex-col">
+            {col.map((cat) =>
+          <CategoryRow key={cat.label} {...cat} />
+          )}
           </div>
-        ))}
+        )}
       </div>
-    </section>
-  );
+    </section>);
+
 }
