@@ -180,7 +180,7 @@ export default function HeroSearch() {
                 </SelectContent>
               </Select>
 
-              <Button className="h-11 bg-primary hover:bg-primary/90 text-white font-semibold text-sm rounded-lg">
+              <Button className="bg-primary text-[hsl(var(--foreground))] px-4 py-2 text-sm font-semibold rounded-lg inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-11 hover:bg-primary/90">
                 <Search className="w-4 h-4 mr-2" />
                 Search
               </Button>
