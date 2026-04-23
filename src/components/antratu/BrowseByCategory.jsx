@@ -46,6 +46,7 @@ const categories = [
 { label: 'Plant Machinery', imgKey: 'plant', highlight: true },
 { label: 'Caravans', imgKey: 'caravan' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
+{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }],
 
 [
 { label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
@@ -53,7 +54,6 @@ const categories = [
 { label: 'Scooters', imgKey: 'scooter' },
 { label: 'Quads', imgKey: 'quad', highlight: true },
 { label: 'Boats & Jet Skis', imgKey: 'boat' },
-{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }],
 { label: 'Rally Cars', imgKey: 'rallyCar' },
 { label: 'Boat Extras', imgKey: 'boatExtras' },
 { label: 'Other Motor', isOther: true }]];
