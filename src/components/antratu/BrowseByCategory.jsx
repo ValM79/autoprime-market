@@ -46,7 +46,7 @@ const categories = [
 { label: 'Campers', imgKey: 'camper' },
 { label: 'Coaches & Buses', imgKey: 'coachBus' },
 { label: 'Plant Machinery', imgKey: 'plant', highlight: true },
-{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }
+{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' },
 { label: 'Caravans', imgKey: 'caravan' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
 ],
