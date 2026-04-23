@@ -35,7 +35,8 @@ const categories = [
 { label: 'Modified Cars', imgKey: 'modifiedCar' },
 { label: 'Car Parts', imgKey: 'carParts' },
 { label: 'Car Extras', imgKey: 'carParts' },
-{ label: 'All Cars & Motor', isAllMotor: true, highlight: true }],
+{ label: 'All Cars & Motor', isAllMotor: true, highlight: true }
+],
 
 [
 { label: 'Trucks', imgKey: 'truck' },
@@ -46,7 +47,8 @@ const categories = [
 { label: 'Plant Machinery', imgKey: 'plant', highlight: true },
 { label: 'Caravans', imgKey: 'caravan' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
-{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }],
+{ label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }
+],
 
 [
 { label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
@@ -56,7 +58,8 @@ const categories = [
 { label: 'Boats & Jet Skis', imgKey: 'boat' },
 { label: 'Rally Cars', imgKey: 'rallyCar' },
 { label: 'Boat Extras', imgKey: 'boatExtras' },
-{ label: 'Other Motor', isOther: true }]];
+{ label: 'Other Motor', isOther: true }
+]];
 
 
 
