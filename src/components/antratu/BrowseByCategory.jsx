@@ -37,7 +37,6 @@ const categories = [
 { label: 'Car Extras', imgKey: 'carParts' },
 { label: 'Rally Cars', imgKey: 'rallyCar' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
-{ label: 'All Cars & Motor', isAllMotor: true, highlight: true }
 ],
 
 [
@@ -59,6 +58,7 @@ const categories = [
 { label: 'Boats & Jet Skis', imgKey: 'boat' },
 { label: 'Boat Extras', imgKey: 'boatExtras' },
 { label: 'Other Motor', isOther: true }
+{ label: 'All Cars & Motor', isAllMotor: true, highlight: true }
 ]];
 
 
