@@ -29,6 +29,7 @@ const IMG = {
 const categories = [
 [
 { label: 'Cars', imgKey: 'car' },
+{ label: 'New Cars', imgKey: 'newCar' },
 { label: 'Commercials', imgKey: 'commercial', highlight: true },
 { label: 'Scooters', imgKey: 'scooter' },
 { label: 'Trucks', imgKey: 'truck' },
@@ -49,7 +50,6 @@ const categories = [
 { label: 'Motorbike Extras', imgKey: 'motorbikeExtras' }],
 
 [
-{ label: 'New Cars', imgKey: 'newCar' },
 { label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
 { label: 'Campers', imgKey: 'camper' },
 { label: 'Caravans', imgKey: 'caravan' },
