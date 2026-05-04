@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { base44 } from '@/api/base44Client';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    base44.auth.me().then(setUser).catch(() => setUser(null));
+  }, []);
+
+  const handleAuthClick = () => {
+    if (user) {
+      base44.auth.logout();
+    } else {
+      base44.auth.redirectToLogin();
+    }
+  };
 
   const navLinks = [
   { label: 'Buy', hasDropdown: true },
@@ -49,8 +63,10 @@ export default function Navbar() {
               Place Ad
             </Button>
 
-            <button className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
-              Login or Sign up
+            <button
+              onClick={handleAuthClick}
+              className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
+              {user ? 'Sign out' : 'Login or Sign up'}
             </button>
 
             <button
