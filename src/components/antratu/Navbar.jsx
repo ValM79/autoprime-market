@@ -8,7 +8,16 @@ export default function Navbar() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
+    const checkAuth = async () => {
+      const authenticated = await base44.auth.isAuthenticated();
+      if (authenticated) {
+        const currentUser = await base44.auth.me();
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
+    };
+    checkAuth();
   }, []);
 
   const handleAuthClick = () => {
