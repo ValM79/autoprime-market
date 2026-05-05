@@ -9,7 +9,7 @@ const IMG = {
   trailer: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/1cf4ce53a_generated_image.png',
   quad: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/72d1a5340_generated_image.png',
   modifiedCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
-  carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b7a3b7c7f_generated_image.png',
+  // carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b7a3b7c7f_generated_image.png',
   dealerCars: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
   vintageCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/77e01c47a_generated_image.png',
   vintageBike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/78a162d71_generated_image.png',
