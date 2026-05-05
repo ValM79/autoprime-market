@@ -68,7 +68,7 @@ export default function Navbar() {
               <button
                 onClick={handleAuthClick}
                 className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
-                {isLoggedIn ? 'Login or Sign up' : 'Sign out'}
+                {isLoggedIn ? 'Login or Sign up'}
               </button>
             )}
 
