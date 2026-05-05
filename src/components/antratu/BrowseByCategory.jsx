@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
 const IMG = {
-  car: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
+  // car: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
   commercial: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/69c5c7c03_generated_image.png',
   scooter: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/684c702eb_generated_image.png',
   truck: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cd2b5117c_generated_image.png',
