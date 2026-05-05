@@ -2,28 +2,28 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
 const IMG = {
-  // car: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
-  commercial: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/69c5c7c03_generated_image.png',
-  scooter: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/684c702eb_generated_image.png',
-  truck: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cd2b5117c_generated_image.png',
-  trailer: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/1cf4ce53a_generated_image.png',
-  quad: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/72d1a5340_generated_image.png',
-  modifiedCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
-  // carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b7a3b7c7f_generated_image.png',
+  car: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
+  newCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
   dealerCars: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
   vintageCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/77e01c47a_generated_image.png',
-  vintageBike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/78a162d71_generated_image.png',
+  modifiedCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
+  truck: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cd2b5117c_generated_image.png',
+  commercial: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/69c5c7c03_generated_image.png',
+  trailer: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/1cf4ce53a_generated_image.png',
+  camper: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/11ae06ec9_generated_image.png',
   coachBus: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b9c3a0c85_generated_image.png',
+  plant: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/800664dcf_generated_image.png',
+  motorbikeExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png',
+  caravan: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/fac88e4c9_generated_image.png',
+  motorbike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png',
+  vintageBike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/78a162d71_generated_image.png',
+  scooter: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/684c702eb_generated_image.png',
+  quad: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/72d1a5340_generated_image.png',
+  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png'
   boat: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
   breaking: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
-  motorbikeExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png',
-  newCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
-  motorbike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png',
-  camper: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/11ae06ec9_generated_image.png',
-  caravan: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/fac88e4c9_generated_image.png',
-  plant: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/800664dcf_generated_image.png',
+  // carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b7a3b7c7f_generated_image.png',
   rallyCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
-  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png'
 };
 
 const categories = [
