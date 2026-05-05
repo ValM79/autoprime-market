@@ -5,12 +5,11 @@ import { base44 } from '@/api/base44Client';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null); // null = loading
 
   useEffect(() => {
-    base44.auth.me()
-      .then(() => setIsLoggedIn(true))
-      .catch(() => setIsLoggedIn(false));
+    base44.auth.isAuthenticated()
+      .then((authed) => setIsLoggedIn(authed));
   }, []);
 
   const handleAuthClick = () => {
@@ -65,11 +64,13 @@ export default function Navbar() {
               Place Ad
             </Button>
 
-            <button
-              onClick={handleAuthClick}
-              className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
-              {isLoggedIn ? 'Sign out' : 'Login or Sign up'}
-            </button>
+            {isLoggedIn !== null && (
+              <button
+                onClick={handleAuthClick}
+                className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
+                {isLoggedIn ? 'Sign out' : 'Login or Sign up'}
+              </button>
+            )}
 
             <button
               className="lg:hidden text-white"
