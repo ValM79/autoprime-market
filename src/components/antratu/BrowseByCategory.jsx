@@ -19,7 +19,7 @@ const IMG = {
   vintageBike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/78a162d71_generated_image.png',
   scooter: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/684c702eb_generated_image.png',
   quad: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/72d1a5340_generated_image.png',
-  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png'
+  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
   boat: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
   breaking: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
   // carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b7a3b7c7f_generated_image.png',
