@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(null); // null = loading
-
-  useEffect(() => {
-    const checkAuth = () => base44.auth.isAuthenticated().then((authed) => setIsLoggedIn(authed));
-    checkAuth();
-    window.addEventListener('focus', checkAuth);
-    return () => window.removeEventListener('focus', checkAuth);
-  }, []);
-
-  const handleAuthClick = () => {
-    if (isLoggedIn) {
-      base44.auth.logout();
-    } else {
-      base44.auth.redirectToLogin();
-    }
-  };
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
 
   const navLinks = [
   { label: 'Buy', hasDropdown: true },
