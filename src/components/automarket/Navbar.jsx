@@ -60,7 +60,7 @@ export default function Navbar() {
             )}
             {isLoggedIn === true && (
               <button
-                onClick={() => base44.auth.logout('/')}
+                onClick={() => base44.auth.logout(window.location.origin + '/')}
                 className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
                 Sign out
               </button>
