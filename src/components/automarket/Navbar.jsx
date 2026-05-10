@@ -19,6 +19,12 @@ const userMenuItems = [
   { label: 'Log out', icon: LogOut, action: 'logout' },
 ];
 
+const sellMenuItems = [
+  { label: 'Place an ad' },
+  { label: 'How to sell my car' },
+  { label: 'Selling tips' },
+];
+
 const buyMenuItems = [
   { label: 'Used cars', count: '83,969' },
   { label: 'New cars', count: '6,558' },
@@ -35,8 +41,10 @@ export default function Navbar() {
   const [showPlaceAd, setShowPlaceAd] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showBuyMenu, setShowBuyMenu] = useState(false);
+  const [showSellMenu, setShowSellMenu] = useState(false);
   const menuRef = useRef(null);
   const buyMenuRef = useRef(null);
+  const sellMenuRef = useRef(null);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -46,6 +54,9 @@ export default function Navbar() {
       }
       if (buyMenuRef.current && !buyMenuRef.current.contains(e.target)) {
         setShowBuyMenu(false);
+      }
+      if (sellMenuRef.current && !sellMenuRef.current.contains(e.target)) {
+        setShowSellMenu(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -107,6 +118,26 @@ export default function Navbar() {
                           </button>
                         )
                       )}
+                    </div>
+                  )}
+                </div>
+              ) : link.label === 'Sell' ? (
+                <div key="Sell" className="relative" ref={sellMenuRef}>
+                  <button
+                    onClick={() => setShowSellMenu((v) => !v)}
+                    className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                    Sell <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+                  {showSellMenu && (
+                    <div className="absolute left-0 mt-2 w-48 bg-white border border-border rounded-xl shadow-lg py-1 z-50">
+                      {sellMenuItems.map((item) => (
+                        <button
+                          key={item.label}
+                          onClick={() => setShowSellMenu(false)}
+                          className="flex items-center w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                          {item.label}
+                        </button>
+                      ))}
                     </div>
                   )}
                 </div>
