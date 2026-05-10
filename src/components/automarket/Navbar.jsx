@@ -1,14 +1,40 @@
-import React, { useState } from 'react';
-import { Search, ChevronDown, Menu, X } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Search, ChevronDown, Menu, X, User, Megaphone, MessageSquare, Bookmark, Bell, History, CreditCard, HelpCircle, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import PlaceAdModal from './PlaceAdModal';
 
+const userMenuItems = [
+  { label: 'Profile', icon: User },
+  { label: 'My Ads', icon: Megaphone },
+  { label: 'Messages', icon: MessageSquare },
+  { label: 'Saved Ads', icon: Bookmark },
+  { label: 'Saved Searches', icon: Bell },
+  { label: 'Browsing History', icon: History },
+  { divider: true },
+  { label: 'History Checks', icon: History },
+  { label: 'Payment History', icon: CreditCard },
+  { label: 'Help', icon: HelpCircle },
+  { label: 'Log out', icon: LogOut, action: 'logout' },
+];
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showPlaceAd, setShowPlaceAd] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const menuRef = useRef(null);
   const { user } = useAuth();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   const isLoggedIn = !!user;
 
   const handlePlaceAd = () => {
@@ -70,11 +96,33 @@ export default function Navbar() {
                 Login or Sign up
               </button>
             ) : (
-              <button
-                onClick={() => base44.auth.logout(window.location.origin + '/')}
-                className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
-                Sign out
-              </button>
+              <div className="relative hidden sm:block" ref={menuRef}>
+                <button
+                  onClick={() => setShowUserMenu((v) => !v)}
+                  className="flex items-center gap-1 text-foreground text-sm font-medium hover:underline transition-all">
+                  My Account <ChevronDown className="w-3.5 h-3.5" />
+                </button>
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-52 bg-white border border-border rounded-xl shadow-lg py-1 z-50">
+                    {userMenuItems.map((item, i) =>
+                      item.divider ? (
+                        <div key={i} className="border-t border-border my-1" />
+                      ) : (
+                        <button
+                          key={item.label}
+                          onClick={() => {
+                            setShowUserMenu(false);
+                            if (item.action === 'logout') base44.auth.logout(window.location.origin + '/');
+                          }}
+                          className="flex items-center gap-2.5 w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                          <item.icon className="w-4 h-4 text-muted-foreground" />
+                          {item.label}
+                        </button>
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
             )}
 
             <button
