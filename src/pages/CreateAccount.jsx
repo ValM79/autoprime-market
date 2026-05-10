@@ -57,6 +57,22 @@ export default function CreateAccount() {
         </div>
 
         <form onSubmit={handleSubmit}>
+          {/* Full Name */}
+          <div className="mb-5">
+            <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-1.5">Full Name</label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                id="fullName"
+                type="text"
+                value={form.fullName}
+                onChange={set('fullName')}
+                placeholder="Your full name"
+                className="w-full border border-input rounded-lg px-3 py-2.5 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+              />
+            </div>
+          </div>
+
           {/* Email */}
           <div className="mb-5">
             <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5">Email</label>
