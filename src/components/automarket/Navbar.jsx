@@ -25,6 +25,11 @@ const sellMenuItems = [
   { label: 'Selling tips' },
 ];
 
+const dealersMenuItems = [
+  { label: 'Find a dealer' },
+  { label: 'Information for dealers' },
+];
+
 const buyMenuItems = [
   { label: 'Used cars', count: '83,969' },
   { label: 'New cars', count: '6,558' },
@@ -42,9 +47,11 @@ export default function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showBuyMenu, setShowBuyMenu] = useState(false);
   const [showSellMenu, setShowSellMenu] = useState(false);
+  const [showDealersMenu, setShowDealersMenu] = useState(false);
   const menuRef = useRef(null);
   const buyMenuRef = useRef(null);
   const sellMenuRef = useRef(null);
+  const dealersMenuRef = useRef(null);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -57,6 +64,9 @@ export default function Navbar() {
       }
       if (sellMenuRef.current && !sellMenuRef.current.contains(e.target)) {
         setShowSellMenu(false);
+      }
+      if (dealersMenuRef.current && !dealersMenuRef.current.contains(e.target)) {
+        setShowDealersMenu(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -134,6 +144,26 @@ export default function Navbar() {
                         <button
                           key={item.label}
                           onClick={() => setShowSellMenu(false)}
+                          className="flex items-center w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : link.label === 'Dealers' ? (
+                <div key="Dealers" className="relative" ref={dealersMenuRef}>
+                  <button
+                    onClick={() => setShowDealersMenu((v) => !v)}
+                    className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                    Dealers <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+                  {showDealersMenu && (
+                    <div className="absolute left-0 mt-2 w-52 bg-white border border-border rounded-xl shadow-lg py-1 z-50">
+                      {dealersMenuItems.map((item) => (
+                        <button
+                          key={item.label}
+                          onClick={() => setShowDealersMenu(false)}
                           className="flex items-center w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
                           {item.label}
                         </button>
