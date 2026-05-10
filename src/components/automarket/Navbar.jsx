@@ -47,7 +47,9 @@ export default function Navbar() {
               <Search className="w-5 h-5" />
             </button>
 
-            <Button className="bg-transparent border border-foreground text-semibold hover:bg-secondary hover:text-foreground font-semibold px-10 h-9 text-sm">
+            <Button
+              onClick={() => { if (!isLoggedIn) base44.auth.redirectToLogin(); }}
+              className="bg-transparent border border-foreground text-semibold hover:bg-secondary hover:text-foreground font-semibold px-10 h-9 text-sm">
               Place Ad
             </Button>
 
