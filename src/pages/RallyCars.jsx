@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
-import FiltersSidebar from '../components/automarket/FiltersSidebar';
+import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
 
 const listings = [
   {
@@ -164,7 +164,7 @@ export default function RallyCars() {
         <div className="flex gap-6">
           {/* Sidebar */}
           <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-            <FiltersSidebar />
+            <SimpleFiltersSidebar />
           </aside>
 
           {/* Listings */}
