@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Star, ChevronDown, Heart, Camera } from 'lucide-react';
+import { Search, Star, ChevronDown, Heart, Camera, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
@@ -147,9 +147,13 @@ export default function NewCars() {
       <div className="max-w-7xl mx-auto px-4 py-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
+          <button onClick={() => window.history.back()} className="flex items-center gap-1 hover:text-primary transition-colors">
+            <ArrowLeft className="w-3.5 h-3.5" /> Back
+          </button>
+          <span>›</span>
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
           <span>›</span>
-          <span className="text-foreground font-medium">Cars</span>
+          <span className="text-foreground font-medium">New Cars</span>
         </div>
 
         {/* Header */}
