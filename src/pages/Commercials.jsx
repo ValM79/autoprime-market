@@ -1,0 +1,401 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Star, ChevronDown, ChevronUp, Heart, Camera } from 'lucide-react';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
+
+const counties = ['All Ireland', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterford', 'Kerry', 'Wexford', 'Wicklow', 'Meath', 'Kildare'];
+const radii = ['+5km', '+10km', '+20km', '+50km', '+100km', 'Nationwide'];
+const vanMakes = ['All makes', 'Ford', 'Renault', 'Volkswagen', 'Mercedes', 'Peugeot', 'Citroën', 'Fiat', 'Vauxhall', 'Toyota', 'Nissan', 'MAN', 'Iveco'];
+const vanModels = ['All models', 'Transit', 'Master', 'Sprinter', 'Crafter', 'Boxer', 'Jumper', 'Ducato', 'Movano', 'Proace', 'NV400', 'TGE'];
+
+const listings = [
+  {
+    id: 1,
+    dealer: 'Dennehy Renault Pro+',
+    dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=50&q=80',
+    dealerType: 'Franchise Dealership',
+    dealerRating: 4.8,
+    spotlight: true,
+    title: 'Renault Master Leasing or contract hire',
+    year: 2025,
+    engine: '2.0 Diesel',
+    mileage: '0 km',
+    daysAgo: '3 days',
+    location: 'Dublin',
+    price: '€1',
+    photos: 1,
+    saved: false,
+    image: 'https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=400&q=80',
+    badge: 'IN RENTAL',
+    badgeDesc: 'BEST CONTRACT HIRE RATES AVAILABLE\n12-month Minimum Lease\nNo Commercial Insurance Provided',
+  },
+  {
+    id: 2,
+    dealer: 'Kylemore Cars',
+    dealerLogo: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=50&q=80',
+    dealerType: 'Trusted Dealer',
+    dealerRating: 4.6,
+    spotlight: false,
+    title: 'Ford Transit Custom L2 Panel Van',
+    year: 2023,
+    engine: '2.0 EcoBlue',
+    mileage: '24,500 km',
+    daysAgo: '1 day',
+    location: 'Cork',
+    price: '€28,950',
+    photos: 8,
+    saved: false,
+    image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=400&q=80',
+    badge: null,
+  },
+  {
+    id: 3,
+    dealer: 'Van Centre Dublin',
+    dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=50&q=80',
+    dealerType: 'Dealership',
+    dealerRating: 4.3,
+    spotlight: false,
+    title: 'Mercedes-Benz Sprinter 314 CDI LWB',
+    year: 2022,
+    engine: '2.1 CDI',
+    mileage: '61,200 km',
+    daysAgo: '5 days',
+    location: 'Dublin',
+    price: '€34,500',
+    photos: 12,
+    saved: false,
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+    badge: null,
+  },
+  {
+    id: 4,
+    dealer: 'Galway Commercial Vehicles',
+    dealerLogo: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=50&q=80',
+    dealerType: 'Private Seller',
+    dealerRating: null,
+    spotlight: false,
+    title: 'Volkswagen Crafter 35 TDI High Roof',
+    year: 2021,
+    engine: '2.0 TDI',
+    mileage: '88,000 km',
+    daysAgo: '2 days',
+    location: 'Galway',
+    price: '€22,000',
+    photos: 6,
+    saved: false,
+    image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',
+    badge: null,
+  },
+  {
+    id: 5,
+    dealer: 'Murphy Commercial',
+    dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=50&q=80',
+    dealerType: 'Dealership',
+    dealerRating: 4.5,
+    spotlight: false,
+    title: 'Peugeot Expert 1000 1.5 BlueHDi',
+    year: 2023,
+    engine: '1.5 Diesel',
+    mileage: '15,300 km',
+    daysAgo: '4 days',
+    location: 'Limerick',
+    price: '€26,750',
+    photos: 9,
+    saved: false,
+    image: 'https://images.unsplash.com/photo-1517994112540-009c47ea476b?w=400&q=80',
+    badge: null,
+  },
+  {
+    id: 6,
+    dealer: 'Dublin Van Sales',
+    dealerLogo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=50&q=80',
+    dealerType: 'Trusted Dealer',
+    dealerRating: 4.7,
+    spotlight: false,
+    title: 'Fiat Ducato 35 Maxi XL Dropside',
+    year: 2022,
+    engine: '2.3 Multijet',
+    mileage: '47,000 km',
+    daysAgo: '1 week',
+    location: 'Dublin',
+    price: '€31,200',
+    photos: 7,
+    saved: false,
+    image: 'https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&q=80',
+    badge: null,
+  },
+];
+
+function StarRating({ rating }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1,2,3,4,5].map(s => (
+        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
+      ))}
+    </div>
+  );
+}
+
+function FilterSection({ title, defaultOpen = true, children }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-b border-border py-3">
+      <button onClick={() => setOpen(v => !v)} className="flex items-center justify-between w-full text-sm font-semibold text-foreground">
+        {title}
+        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+      </button>
+      {open && <div className="mt-3">{children}</div>}
+    </div>
+  );
+}
+
+function Sel({ value, onChange, options, placeholder }) {
+  return (
+    <div className="relative">
+      <select value={value} onChange={e => onChange(e.target.value)}
+        className="w-full appearance-none border border-border rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary/40 pr-7 text-foreground">
+        {placeholder && <option value="">{placeholder}</option>}
+        {options.map(o => <option key={o} value={o}>{o}</option>)}
+      </select>
+      <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+    </div>
+  );
+}
+
+export default function Commercials() {
+  const [search, setSearch] = useState('');
+  const [county, setCounty] = useState('All Ireland');
+  const [radius, setRadius] = useState('+5km');
+  const [make, setMake] = useState('All makes');
+  const [model, setModel] = useState('All models');
+  const [savedIds, setSavedIds] = useState([]);
+
+  const toggleSaved = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+
+  const handleReset = () => {
+    setCounty('All Ireland');
+    setRadius('+5km');
+    setMake('All makes');
+    setModel('All models');
+  };
+
+  const filtered = listings.filter(l => {
+    const matchSearch = !search || l.title.toLowerCase().includes(search.toLowerCase());
+    const matchCounty = county === 'All Ireland' || l.location === county;
+    const matchMake = make === 'All makes' || l.title.toLowerCase().includes(make.toLowerCase());
+    return matchSearch && matchCounty && matchMake;
+  });
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
+          <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+          <span>›</span>
+          <span className="text-foreground font-medium">Commercials</span>
+        </div>
+
+        {/* Header row */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+          <h1 className="text-2xl font-bold text-foreground">Commercials in Ireland</h1>
+          <div className="relative w-full sm:w-80">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input
+              type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search Commercials"
+              className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+            />
+          </div>
+        </div>
+
+        {/* Promo banner */}
+        <div className="rounded-xl overflow-hidden mb-6 relative bg-gray-900 h-40 sm:h-52 flex items-center">
+          <img
+            src="https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=1200&q=80"
+            alt="Promo"
+            className="absolute inset-0 w-full h-full object-cover opacity-50"
+          />
+          <div className="relative z-10 px-8 py-6">
+            <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Special Offer</p>
+            <h2 className="text-white text-2xl sm:text-3xl font-extrabold leading-tight mb-1">
+              10-YEAR <span className="text-red-400">TGE</span> ANNIVERSARY
+            </h2>
+            <p className="text-white font-bold text-lg">SPECIAL OFFER</p>
+            <p className="text-white/80 text-xs mt-1">Saving of up to <span className="text-white font-bold">€2,700</span></p>
+          </div>
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 bg-red-600 text-white rounded-full w-20 h-20 flex flex-col items-center justify-center text-center hidden sm:flex">
+            <span className="text-[10px] font-semibold leading-tight">SAVING UP TO</span>
+            <span className="text-base font-extrabold">€2,700</span>
+          </div>
+        </div>
+
+        <div className="flex gap-6">
+          {/* Sidebar */}
+          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4">
+            <div className="bg-white rounded-xl border border-border shadow-sm p-4">
+              <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4 text-foreground text-sm">
+                <Star className="w-4 h-4 text-muted-foreground" /> Save Search
+              </button>
+
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-bold text-foreground">Filters</span>
+                <button onClick={handleReset} className="text-xs text-primary hover:underline">Reset All</button>
+              </div>
+
+              <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-3 text-muted-foreground text-sm">
+                <Search className="w-4 h-4" /> View your previous searches
+              </button>
+
+              <FilterSection title="Location">
+                <div className="flex flex-col gap-2">
+                  <Sel value={county} onChange={setCounty} options={counties} />
+                  <Sel value={radius} onChange={setRadius} options={radii} />
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Make / Model" defaultOpen={false}>
+                <div className="flex flex-col gap-2">
+                  <Sel value={make} onChange={setMake} options={vanMakes} />
+                  <Sel value={model} onChange={setModel} options={vanModels} />
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Year" defaultOpen={false}>
+                <div className="grid grid-cols-2 gap-2">
+                  <Sel value="" onChange={() => {}} options={['2025','2024','2023','2022','2021','2020','2019','2018']} placeholder="From" />
+                  <Sel value="" onChange={() => {}} options={['2025','2024','2023','2022','2021','2020','2019','2018']} placeholder="To" />
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Price" defaultOpen={false}>
+                <div className="grid grid-cols-2 gap-2">
+                  <input type="number" placeholder="From €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" placeholder="To €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Mileage" defaultOpen={false}>
+                <div className="grid grid-cols-2 gap-2">
+                  <input type="number" placeholder="From km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" placeholder="To km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Van Type" defaultOpen={false}>
+                <div className="flex flex-col gap-1.5">
+                  {['Panel Van', 'Crew Van', 'Luton Van', 'Dropside', 'Tipper', 'Refrigerated', 'Minibus'].map(t => (
+                    <label key={t} className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="w-3.5 h-3.5 accent-primary" />
+                      <span className="text-sm text-foreground">{t}</span>
+                    </label>
+                  ))}
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Fuel type" defaultOpen={false}>
+                <div className="flex flex-col gap-1.5">
+                  {['Diesel', 'Petrol', 'Electric', 'Hybrid'].map(f => (
+                    <label key={f} className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" className="w-3.5 h-3.5 accent-primary" />
+                      <span className="text-sm text-foreground">{f}</span>
+                    </label>
+                  ))}
+                </div>
+              </FilterSection>
+            </div>
+          </aside>
+
+          {/* Listings */}
+          <div className="flex-1 min-w-0">
+            {/* Results bar */}
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{filtered.length.toLocaleString()}</span> ads for <span className="font-semibold text-foreground">Commercials in Ireland</span>
+              </p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                Sort by: <span className="font-semibold text-foreground">Best match</span>
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {filtered.map(listing => (
+                <div key={listing.id} className="bg-white border border-border rounded-xl shadow-sm overflow-hidden">
+                  {/* Dealer header */}
+                  <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+                    <img src={listing.dealerLogo} alt={listing.dealer} className="w-8 h-8 rounded-full object-cover" />
+                    <span className="text-sm font-semibold text-primary">{listing.dealer}</span>
+                    {listing.spotlight && (
+                      <span className="ml-auto text-xs bg-yellow-100 text-yellow-700 border border-yellow-300 px-2 py-0.5 rounded font-semibold">Spotlight</span>
+                    )}
+                  </div>
+
+                  {/* Listing body */}
+                  <div className="flex flex-col sm:flex-row">
+                    {/* Image */}
+                    <div className="relative w-full sm:w-56 flex-shrink-0 h-44 sm:h-auto">
+                      <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+                      {listing.badge && (
+                        <div className="absolute inset-0 bg-black/60 flex flex-col justify-center px-4">
+                          <span className="text-yellow-400 font-extrabold text-sm mb-1">{listing.badge}</span>
+                          {listing.badgeDesc && listing.badgeDesc.split('\n').map((line, i) => (
+                            <p key={i} className="text-white text-xs leading-snug">{line}</p>
+                          ))}
+                        </div>
+                      )}
+                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/50 text-white text-xs px-2 py-0.5 rounded">
+                        <Camera className="w-3 h-3" /> {listing.photos}
+                      </div>
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1 p-4 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs text-muted-foreground font-medium">{listing.dealerType}</span>
+                          {listing.dealerRating && (
+                            <>
+                              <StarRating rating={listing.dealerRating} />
+                              <span className="text-xs font-semibold text-foreground">{listing.dealerRating}</span>
+                            </>
+                          )}
+                        </div>
+                        <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary cursor-pointer transition-colors">{listing.title}</h3>
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
+                          <span>{listing.year}</span>
+                          <span>·</span>
+                          <span>{listing.engine}</span>
+                          <span>·</span>
+                          <span>{listing.mileage}</span>
+                          <span>·</span>
+                          <span>{listing.daysAgo}</span>
+                          <span>·</span>
+                          <span>{listing.location}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-3">
+                        <span className="text-xl font-extrabold text-foreground">{listing.price}</span>
+                        <button onClick={() => toggleSaved(listing.id)}
+                          className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${savedIds.includes(listing.id) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:border-primary hover:text-primary'}`}>
+                          <Heart className={`w-4 h-4 ${savedIds.includes(listing.id) ? 'fill-primary' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
