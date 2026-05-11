@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, ChevronDown, Menu, X, User, Megaphone, MessageSquare, Bookmark, Bell, History, CreditCard, HelpCircle, LogOut } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, User, Megaphone, MessageSquare, Bookmark, Heart, History, CreditCard, HelpCircle, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
@@ -12,7 +12,7 @@ const userMenuItems = [
   { label: 'My Ads', icon: Megaphone },
   { label: 'Messages', icon: MessageSquare },
   { label: 'Saved Ads', icon: Bookmark },
-  { label: 'Saved Searches', icon: Bell },
+  { label: 'Saved Searches', icon: Heart },
   { label: 'Browsing History', icon: History },
   { divider: true },
   { label: 'History Checks', icon: History },
