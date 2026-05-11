@@ -56,7 +56,7 @@ export default function PlaceAd() {
 
   const handleFiles = (files) => {
     const validFiles = Array.from(files).filter((f) => f.type.startsWith('image/'));
-    const remaining = 10 - photos.length;
+    const remaining = 15 - photos.length;
     const toAdd = validFiles.slice(0, remaining).map((f) => ({
       file: f,
       preview: URL.createObjectURL(f),
@@ -116,7 +116,7 @@ export default function PlaceAd() {
           </Section>
 
           {/* Section 2: Photos */}
-          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 10 photos">
+          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 15 photos">
             {/* Photo grid */}
             {photos.length > 0 && (
               <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4">
@@ -135,7 +135,7 @@ export default function PlaceAd() {
             )}
 
             {/* Drop zone */}
-            {photos.length < 10 && (
+            {photos.length < 15 && (
               <div
                 onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                 onDragLeave={() => setDragOver(false)}
@@ -148,7 +148,7 @@ export default function PlaceAd() {
                   <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
                 </label>
                 <span className="text-muted-foreground text-sm"> or drag and drop</span>
-                <p className="text-xs text-muted-foreground mt-2">Up to {10 - photos.length} more images · .jpg, .png and .gif files</p>
+                <p className="text-xs text-muted-foreground mt-2">Up to {15 - photos.length} more images · .jpg, .png and .gif files</p>
               </div>
             )}
 
