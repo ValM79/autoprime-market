@@ -82,6 +82,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'New Cars') navigate('/new-cars');
     if (label === 'Cars') navigate('/cars-for-sale');
     if (label === 'Cars from Dealerships') navigate('/dealership-cars');
+    if (label === 'Vintage Cars') navigate('/vintage-cars');
     if (label === 'Commercials') navigate('/commercials');
   };
 
