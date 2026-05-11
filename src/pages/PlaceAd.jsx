@@ -17,26 +17,45 @@ const areasByCounty = {
 };
 
 const sections = [
-  { label: 'Cars & Motor', subsections: ['Cars', 'Motorcycles', 'Trucks', 'Vans', 'Caravans & Campers', 'Plant & Machinery', 'Car Parts & Accessories'] },
-  { label: 'Electronics', subsections: ['Phones', 'Laptops', 'Tablets', 'TVs', 'Cameras', 'Gaming'] },
-  { label: 'Property', subsections: ['Houses', 'Apartments', 'Land', 'Commercial'] },
-  { label: 'Home & Garden', subsections: ['Furniture', 'Garden', 'DIY', 'Appliances'] },
-  { label: 'Sport & Leisure', subsections: ['Fitness', 'Bikes', 'Outdoor', 'Music'] },
-  { label: 'Farming', subsections: ['Tractors', 'Livestock', 'Land', 'Machinery'] },
-  { label: 'Other', subsections: ['Miscellaneous'] },
+  {
+    label: 'Cars',
+    subsections: ['New Cars', 'Cars', 'Cars from Dealerships', 'Vintage Cars', 'Modified Cars', 'Car Parts', 'Car Extras', 'Rally Cars', 'Breaking & Repairables'],
+  },
+  {
+    label: 'Trucks & Vans',
+    subsections: ['Trucks', 'Commercials', 'Trailers', 'Campers', 'Coaches & Buses', 'Plant Machinery', 'Motorbike Extras', 'Caravans'],
+  },
+  {
+    label: 'Bikes & Boats',
+    subsections: ['Motorbikes', 'Vintage Bikes', 'Scooters', 'Quads', 'Boats & Jet Skis', 'Boat Extras', 'Other Motor'],
+  },
 ];
 
 const categoryToSection = {
-  car: { section: 'Cars & Motor', subsection: 'Cars' },
-  cars: { section: 'Cars & Motor', subsection: 'Cars' },
-  motorcycle: { section: 'Cars & Motor', subsection: 'Motorcycles' },
-  van: { section: 'Cars & Motor', subsection: 'Vans' },
-  truck: { section: 'Cars & Motor', subsection: 'Trucks' },
-  tractor: { section: 'Farming', subsection: 'Tractors' },
-  phone: { section: 'Electronics', subsection: 'Phones' },
-  laptop: { section: 'Electronics', subsection: 'Laptops' },
-  house: { section: 'Property', subsection: 'Houses' },
-  apartment: { section: 'Property', subsection: 'Apartments' },
+  'new cars': { section: 'Cars', subsection: 'New Cars' },
+  cars: { section: 'Cars', subsection: 'Cars' },
+  'cars from dealerships': { section: 'Cars', subsection: 'Cars from Dealerships' },
+  'vintage cars': { section: 'Cars', subsection: 'Vintage Cars' },
+  'modified cars': { section: 'Cars', subsection: 'Modified Cars' },
+  'car parts': { section: 'Cars', subsection: 'Car Parts' },
+  'car extras': { section: 'Cars', subsection: 'Car Extras' },
+  'rally cars': { section: 'Cars', subsection: 'Rally Cars' },
+  'breaking & repairables': { section: 'Cars', subsection: 'Breaking & Repairables' },
+  trucks: { section: 'Trucks & Vans', subsection: 'Trucks' },
+  commercials: { section: 'Trucks & Vans', subsection: 'Commercials' },
+  trailers: { section: 'Trucks & Vans', subsection: 'Trailers' },
+  campers: { section: 'Trucks & Vans', subsection: 'Campers' },
+  'coaches & buses': { section: 'Trucks & Vans', subsection: 'Coaches & Buses' },
+  'plant machinery': { section: 'Trucks & Vans', subsection: 'Plant Machinery' },
+  'motorbike extras': { section: 'Trucks & Vans', subsection: 'Motorbike Extras' },
+  caravans: { section: 'Trucks & Vans', subsection: 'Caravans' },
+  motorbikes: { section: 'Bikes & Boats', subsection: 'Motorbikes' },
+  'vintage bikes': { section: 'Bikes & Boats', subsection: 'Vintage Bikes' },
+  scooters: { section: 'Bikes & Boats', subsection: 'Scooters' },
+  quads: { section: 'Bikes & Boats', subsection: 'Quads' },
+  'boats & jet skis': { section: 'Bikes & Boats', subsection: 'Boats & Jet Skis' },
+  'boat extras': { section: 'Bikes & Boats', subsection: 'Boat Extras' },
+  'other motor': { section: 'Bikes & Boats', subsection: 'Other Motor' },
 };
 
 const emptyForm = {
