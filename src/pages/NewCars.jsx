@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Star, ChevronDown, ChevronUp, Heart, Camera, Info } from 'lucide-react';
+import { Search, Star, ChevronDown, Heart, Camera } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
+import FiltersSidebar from '../components/automarket/FiltersSidebar';
 
-const counties = ['All Ireland', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterford', 'Kerry', 'Wexford', 'Wicklow', 'Meath', 'Kildare'];
-const radii = ['+5km', '+10km', '+20km', '+50km', '+100km', 'Nationwide'];
-const makes = ['All makes', 'Audi', 'BMW', 'Ford', 'Hyundai', 'INEOS', 'Mercedes', 'Nissan', 'Renault', 'Toyota', 'Volkswagen'];
-const models = ['All models', 'Corolla', 'Golf', 'Focus', 'A4', '3 Series', 'Grenadier', 'Tucson'];
-const years = ['', '2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018'];
-const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid', 'Plug-in Hybrid', 'LPG', 'Other'];
-const transmissions = ['Manual', 'Automatic', 'Semi-Automatic'];
-const bodyTypes = ['Saloon', 'Hatchback', 'SUV', 'Estate', 'Coupe', 'Convertible', 'MPV', 'Van'];
-const colours = ['Any', 'Black', 'White', 'Silver', 'Grey', 'Blue', 'Red', 'Green', 'Yellow', 'Orange'];
-const adTypes = ['All', 'For Sale', 'Wanted'];
+function StarRating({ rating }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1,2,3,4,5].map(s => (
+        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
+      ))}
+    </div>
+  );
+}
+
 
 const listings = [
   {
@@ -128,85 +129,16 @@ const listings = [
   },
 ];
 
-function StarRating({ rating }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(s => (
-        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
-      ))}
-    </div>
-  );
-}
-
-function FilterSection({ title, defaultOpen = true, children }) {
-  const [open, setOpen] = useState(defaultOpen);
-  return (
-    <div className="border-b border-border py-3">
-      <button onClick={() => setOpen(v => !v)} className="flex items-center justify-between w-full text-sm font-semibold text-foreground">
-        {title}
-        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
-      </button>
-      {open && <div className="mt-3">{children}</div>}
-    </div>
-  );
-}
-
-function Sel({ value, onChange, options, placeholder }) {
-  return (
-    <div className="relative">
-      <select value={value} onChange={e => onChange(e.target.value)}
-        className="w-full appearance-none border border-border rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary/40 pr-7 text-foreground">
-        {placeholder && <option value="">{placeholder}</option>}
-        {options.map(o => <option key={o} value={o}>{o}</option>)}
-      </select>
-      <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
-    </div>
-  );
-}
 
 export default function NewCars() {
   const [search, setSearch] = useState('');
-  const [trusted, setTrusted] = useState(false);
-  const [sellerTypes, setSellerTypes] = useState([]);
-  const [ratings, setRatings] = useState([]);
-  const [county, setCounty] = useState('All Ireland');
-  const [radius, setRadius] = useState('+5km');
-  const [make, setMake] = useState('All makes');
-  const [model, setModel] = useState('All models');
-  const [yearFrom, setYearFrom] = useState('');
-  const [yearTo, setYearTo] = useState('');
-  const [priceFrom, setPriceFrom] = useState('');
-  const [priceTo, setPriceTo] = useState('');
-  const [mileageFrom, setMileageFrom] = useState('');
-  const [mileageTo, setMileageTo] = useState('');
-  const [fuelSelected, setFuelSelected] = useState([]);
-  const [transSelected, setTransSelected] = useState([]);
-  const [bodySelected, setBodySelected] = useState([]);
-  const [colour, setColour] = useState('Any');
-  const [reserveOnline, setReserveOnline] = useState(false);
-  const [adType, setAdType] = useState('All');
   const [savedIds, setSavedIds] = useState([]);
 
-  const toggleArr = (setter) => (val) => setter(prev => prev.includes(val) ? prev.filter(x => x !== val) : [...prev, val]);
   const toggleSaved = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
 
-  const handleReset = () => {
-    setTrusted(false); setSellerTypes([]); setRatings([]);
-    setCounty('All Ireland'); setRadius('+5km');
-    setMake('All makes'); setModel('All models');
-    setYearFrom(''); setYearTo('');
-    setPriceFrom(''); setPriceTo('');
-    setMileageFrom(''); setMileageTo('');
-    setFuelSelected([]); setTransSelected([]); setBodySelected([]);
-    setColour('Any'); setReserveOnline(false); setAdType('All');
-  };
-
-  const filtered = listings.filter(l => {
-    const matchSearch = !search || l.title.toLowerCase().includes(search.toLowerCase());
-    const matchCounty = county === 'All Ireland' || l.location === county;
-    const matchMake = make === 'All makes' || l.title.toLowerCase().includes(make.toLowerCase());
-    return matchSearch && matchCounty && matchMake;
-  });
+  const filtered = listings.filter(l =>
+    !search || l.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -254,147 +186,7 @@ export default function NewCars() {
         <div className="flex gap-6">
           {/* Sidebar */}
           <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-            <div className="bg-white rounded-xl border border-border shadow-sm p-4 text-sm">
-              <button className="flex items-center justify-center gap-2 w-full bg-primary text-white rounded-lg px-4 py-2.5 hover:bg-primary/90 transition-colors mb-4 font-semibold">
-                <Star className="w-4 h-4" /> Save Search
-              </button>
-
-              <div className="flex items-center justify-between mb-3">
-                <span className="font-bold text-foreground">Filters</span>
-                <button onClick={handleReset} className="text-xs text-primary hover:underline">Reset All</button>
-              </div>
-
-              <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-3 text-muted-foreground">
-                <Search className="w-4 h-4" /> View your previous searches
-              </button>
-
-              {/* Trusted dealers */}
-              <div className="flex items-center gap-2 mb-3 pb-3 border-b border-border">
-                <input type="checkbox" id="trusted" checked={trusted} onChange={e => setTrusted(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
-                <label htmlFor="trusted" className="flex items-center gap-1.5 text-sm text-foreground cursor-pointer">
-                  <span className="text-green-600">✓</span> Trusted dealers only <span className="text-muted-foreground">(4,214)</span>
-                  <Info className="w-3.5 h-3.5 text-primary" />
-                </label>
-              </div>
-
-              <FilterSection title="Seller type">
-                <div className="flex flex-col gap-1.5">
-                  {[['Dealership', '6,537'], ['Private seller', '1']].map(([label, count]) => (
-                    <label key={label} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" checked={sellerTypes.includes(label)} onChange={() => toggleArr(setSellerTypes)(label)} className="w-3.5 h-3.5 accent-primary" />
-                      <span className="text-sm text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Rating" defaultOpen={true}>
-                <div className="flex flex-col gap-1.5">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={ratings.includes(4)} onChange={() => toggleArr(setRatings)(4)} className="w-3.5 h-3.5 accent-primary" />
-                    <StarRating rating={4} />
-                    <span className="text-sm text-muted-foreground">4+ rated sellers only (6,086)</span>
-                  </label>
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Location" defaultOpen={false}>
-                <div className="flex flex-col gap-2">
-                  <Sel value={county} onChange={setCounty} options={counties} />
-                  <Sel value={radius} onChange={setRadius} options={radii} />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Make / Model" defaultOpen={false}>
-                <div className="flex flex-col gap-2">
-                  <Sel value={make} onChange={setMake} options={makes} />
-                  <Sel value={model} onChange={setModel} options={models} />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Year" defaultOpen={false}>
-                <div className="grid grid-cols-2 gap-2">
-                  <Sel value={yearFrom} onChange={setYearFrom} options={years} placeholder="From" />
-                  <Sel value={yearTo} onChange={setYearTo} options={years} placeholder="To" />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Price" defaultOpen={false}>
-                <div className="grid grid-cols-2 gap-2">
-                  <input type="number" value={priceFrom} onChange={e => setPriceFrom(e.target.value)} placeholder="From €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                  <input type="number" value={priceTo} onChange={e => setPriceTo(e.target.value)} placeholder="To €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Mileage" defaultOpen={false}>
-                <div className="grid grid-cols-2 gap-2">
-                  <input type="number" value={mileageFrom} onChange={e => setMileageFrom(e.target.value)} placeholder="From km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                  <input type="number" value={mileageTo} onChange={e => setMileageTo(e.target.value)} placeholder="To km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Fuel type" defaultOpen={false}>
-                <div className="flex flex-col gap-1.5">
-                  {fuelTypes.map(f => (
-                    <label key={f} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" checked={fuelSelected.includes(f)} onChange={() => toggleArr(setFuelSelected)(f)} className="w-3.5 h-3.5 accent-primary" />
-                      <span className="text-sm text-foreground">{f}</span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Transmission" defaultOpen={false}>
-                <div className="flex flex-wrap gap-2">
-                  {transmissions.map(t => (
-                    <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
-                      className={`px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
-                      {t}
-                    </button>
-                  ))}
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Body type" defaultOpen={false}>
-                <div className="flex flex-col gap-1.5">
-                  {bodyTypes.map(b => (
-                    <label key={b} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" checked={bodySelected.includes(b)} onChange={() => toggleArr(setBodySelected)(b)} className="w-3.5 h-3.5 accent-primary" />
-                      <span className="text-sm text-foreground">{b}</span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Colour" defaultOpen={false}>
-                <div className="flex flex-wrap gap-2">
-                  {colours.map(c => (
-                    <button key={c} onClick={() => setColour(c)}
-                      className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${colour === c ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
-                      {c}
-                    </button>
-                  ))}
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Reserve online" defaultOpen={false}>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" checked={reserveOnline} onChange={e => setReserveOnline(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
-                  <span className="text-sm text-foreground">Reserve online only</span>
-                </label>
-              </FilterSection>
-
-              <FilterSection title="Ad type" defaultOpen={false}>
-                <div className="flex flex-col gap-1.5">
-                  {adTypes.map(t => (
-                    <label key={t} className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="newCarsAdType" checked={adType === t} onChange={() => setAdType(t)} className="w-3.5 h-3.5 accent-primary" />
-                      <span className="text-sm text-foreground">{t}</span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-            </div>
+            <FiltersSidebar />
           </aside>
 
           {/* Listings */}
