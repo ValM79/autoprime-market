@@ -81,6 +81,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
   const handleClick = () => {
     if (label === 'New Cars') navigate('/new-cars');
     if (label === 'Cars') navigate('/cars-for-sale');
+    if (label === 'Cars from Dealerships') navigate('/dealership-cars');
     if (label === 'Commercials') navigate('/commercials');
   };
 
