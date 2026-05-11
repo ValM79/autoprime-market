@@ -17,6 +17,7 @@ import NewCars from './pages/NewCars';
 import DealershipCars from './pages/DealershipCars';
 import VintageCars from './pages/VintageCars';
 import ModifiedCars from './pages/ModifiedCars';
+import CarParts from './pages/CarParts';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -57,6 +58,7 @@ const AuthenticatedApp = () => {
       <Route path="/dealership-cars" element={<DealershipCars />} />
       <Route path="/vintage-cars" element={<VintageCars />} />
       <Route path="/modified-cars" element={<ModifiedCars />} />
+      <Route path="/car-parts" element={<CarParts />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
