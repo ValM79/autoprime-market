@@ -35,7 +35,7 @@ const dealersMenuItems = [
 const buyMenuItems = [
   { label: 'Used cars', count: '83,969', route: '/used-cars' },
   { label: 'New cars', count: '6,558', route: '/new-cars' },
-  { label: 'Dealership cars', count: '72,543' },
+  { label: 'Dealership cars', count: '72,543', route: '/dealership-cars' },
   { label: 'Trusted Dealer cars', count: '33,624' },
   { label: 'Electric & Hybrid cars', count: '25,493' },
   { divider: true },
