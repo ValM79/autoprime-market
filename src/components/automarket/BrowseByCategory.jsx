@@ -96,6 +96,14 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Coaches & Buses') navigate('/coaches-buses');
     if (label === 'Plant Machinery') navigate('/plant-machinery');
     if (label === 'Motorbike Extras') navigate('/motorbike-extras');
+    if (label === 'Motorbikes') navigate('/motorbikes');
+    if (label === 'Vintage Bikes') navigate('/vintage-bikes');
+    if (label === 'Scooters') navigate('/scooters');
+    if (label === 'Quads') navigate('/quads');
+    if (label === 'Caravans') navigate('/caravans');
+    if (label === 'Boats & Jet Skis') navigate('/boats');
+    if (label === 'Boat Extras') navigate('/boat-extras');
+    if (label === 'Other Motor') navigate('/other-motor');
     if (label === 'Commercials') navigate('/commercials');
   };
 

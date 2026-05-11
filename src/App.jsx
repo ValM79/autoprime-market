@@ -27,6 +27,14 @@ import Campers from './pages/Campers';
 import CoachesBuses from './pages/CoachesBuses';
 import PlantMachinery from './pages/PlantMachinery';
 import MotorbikeExtras from './pages/MotorbikeExtras';
+import Motorbikes from './pages/Motorbikes';
+import VintageBikes from './pages/VintageBikes';
+import Scooters from './pages/Scooters';
+import Quads from './pages/Quads';
+import Caravans from './pages/Caravans';
+import Boats from './pages/Boats';
+import BoatExtras from './pages/BoatExtras';
+import OtherMotor from './pages/OtherMotor';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -77,6 +85,14 @@ const AuthenticatedApp = () => {
       <Route path="/coaches-buses" element={<CoachesBuses />} />
       <Route path="/plant-machinery" element={<PlantMachinery />} />
       <Route path="/motorbike-extras" element={<MotorbikeExtras />} />
+      <Route path="/motorbikes" element={<Motorbikes />} />
+      <Route path="/vintage-bikes" element={<VintageBikes />} />
+      <Route path="/scooters" element={<Scooters />} />
+      <Route path="/quads" element={<Quads />} />
+      <Route path="/caravans" element={<Caravans />} />
+      <Route path="/boats" element={<Boats />} />
+      <Route path="/boat-extras" element={<BoatExtras />} />
+      <Route path="/other-motor" element={<OtherMotor />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
