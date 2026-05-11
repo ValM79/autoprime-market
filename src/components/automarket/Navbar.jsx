@@ -39,7 +39,7 @@ const buyMenuItems = [
   { label: 'Trusted Dealer cars', count: '33,624', route: '/trusted-dealer-cars' },
   { label: 'Electric & Hybrid cars', count: '25,493', route: '/electric-hybrid-cars' },
   { divider: true },
-  { label: 'All motors' },
+  { label: 'All motors', route: '/all-motors' },
   { label: 'Buying tips' },
 ];
 
