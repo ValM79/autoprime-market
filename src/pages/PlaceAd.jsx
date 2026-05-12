@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus, Pencil } from 'lucide-react';
+import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus, Pencil, Car, Info } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import ImageViewer from '../components/automarket/ImageViewer';
@@ -68,6 +68,9 @@ const emptyForm = {
   description: '',
   price: '',
   youtubeUrl: '',
+  registration: '',
+  mileage: '',
+  mileageUnit: 'km',
   fullName: '',
   email: '',
   phone: '',
@@ -380,7 +383,61 @@ export default function PlaceAd() {
             </div>
           </Section>
 
-          {/* Section 3: Ad Details */}
+          {/* Section 3: Vehicle Details */}
+          <Section title="Vehicle Details" icon={<Car className="w-5 h-5" />} subtitle="Get all your vehicle details instantly">
+            <div className="flex flex-col gap-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Enter Vehicle Registration <span className="text-destructive">*</span></label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+                      🇮🇪
+                    </div>
+                    <input
+                      type="text"
+                      value={form.registration}
+                      onChange={set('registration')}
+                      placeholder="e.g 201D0123"
+                      className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-14 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                    />
+                  </div>
+                  <button className="bg-foreground text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-foreground/90 transition-colors text-sm whitespace-nowrap">
+                    Find
+                  </button>
+                </div>
+                <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                  <Info className="w-4 h-4" />
+                  Registration not displayed on ad
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Add your mileage</label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={form.mileage}
+                    onChange={set('mileage')}
+                    placeholder="e.g. 12,000"
+                    className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                  />
+                  <div className="relative">
+                    <select
+                      value={form.mileageUnit}
+                      onChange={set('mileageUnit')}
+                      className="appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9 min-w-24"
+                    >
+                      <option>km</option>
+                      <option>miles</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Section>
+
+          {/* Section 4: Ad Details */}
           <Section title="Ad Details" icon={<FileText className="w-5 h-5" />}>
             <div className="flex flex-col gap-4">
               <div>
@@ -424,7 +481,7 @@ export default function PlaceAd() {
             </div>
           </Section>
 
-          {/* Section 4: Contact Details */}
+          {/* Section 5: Contact Details */}
           <Section title="Contact Details" icon={<User className="w-5 h-5" />}>
             <div className="flex flex-col gap-4">
               <div>
