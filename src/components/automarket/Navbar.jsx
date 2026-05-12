@@ -101,7 +101,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-2">
             <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Auto</span>
             <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Market</span>
-            <img src="https://images.unsplash.com/photo-1581274455760-2217be2e54dd?w=40&h=40&fit=crop&q=80" alt="Car Wheel" className="w-6 h-6 object-cover rounded-full" />
+            <img src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png" alt="AutoMarket Logo" className="w-6 h-6 object-contain" />
           </Link>
 
           {/* Desktop Nav */}
