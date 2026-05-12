@@ -11,7 +11,20 @@ export default function QuickLinks() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-3 flex justify-end">
       <div className="flex gap-2">
-        {links.map((link) => (
+        {links.map((link) => {
+        const isCartell = link.label === 'Cartell Vehicle Check';
+        return isCartell ? (
+          <a
+            key={link.label}
+            href="https://cartell.ie"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
+          >
+            <link.icon className="w-3.5 h-3.5" />
+            {link.label}
+          </a>
+        ) : (
           <button
             key={link.label}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
@@ -19,7 +32,8 @@ export default function QuickLinks() {
             <link.icon className="w-3.5 h-3.5" />
             {link.label}
           </button>
-        ))}
+        );
+      })}
       </div>
     </div>
   );
