@@ -165,18 +165,13 @@ export default function PlaceAd() {
               <input
                 type="text"
                 value={form.category}
-                onChange={(e) => {
-                  handleCategoryChange(e);
-                  setTimeout(() => {
-                    document.getElementById('section-select').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }, 0);
-                }}
+                onChange={handleCategoryChange}
                 placeholder="e.g. Car, Phone, Tractor, ..."
                 className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
               />
 
               {/* Select Section */}
-              <div id="section-select">
+              <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
                 <div className="relative">
                   <select
