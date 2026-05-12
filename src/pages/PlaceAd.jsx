@@ -252,9 +252,9 @@ export default function PlaceAd() {
           {/* Section 2: Photos */}
           <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 20 photos">
             {/* Photo grid */}
-            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4">
               {photos.map((p, i) => (
-                <div key={i} className="relative rounded-lg overflow-hidden w-32 h-32 flex-shrink-0 border border-border group">
+                <div key={i} className="relative rounded-lg overflow-hidden aspect-square border border-border">
                   <img src={p.preview} alt="" className="w-full h-full object-cover" />
                   {i === 0 && (
                     <div className="absolute top-1 left-1 flex items-center gap-1 bg-black/60 text-white text-xs font-bold px-1.5 py-0.5 rounded">
@@ -263,7 +263,7 @@ export default function PlaceAd() {
                   )}
                   <button
                     onClick={() => removePhoto(i)}
-                    className="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-black/80"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -272,7 +272,7 @@ export default function PlaceAd() {
 
               {/* Add more slot */}
               {photos.length < 20 && (
-                <label className="cursor-pointer w-32 h-32 flex-shrink-0 border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center gap-1 hover:border-primary/50 hover:bg-secondary/50 transition-colors">
+                <label className="cursor-pointer aspect-square border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center gap-1 hover:border-primary/50 hover:bg-secondary/50 transition-colors">
                   <div className="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center">
                     <span className="text-primary text-xl font-light leading-none">+</span>
                   </div>
