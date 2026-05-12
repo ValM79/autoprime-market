@@ -124,6 +124,10 @@ export default function PlaceAd() {
       preview: URL.createObjectURL(f),
     }));
     setPhotos((prev) => [...prev, ...toAdd]);
+    
+    // Reset file input so same files can be selected again
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => input.value = '');
   };
 
   const removePhoto = (idx) => {
