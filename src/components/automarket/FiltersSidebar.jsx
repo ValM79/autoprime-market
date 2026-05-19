@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Star, ChevronDown, ChevronUp, Plus, ShieldCheck, Info, Clock } from 'lucide-react';
 import MakeSelector from './MakeSelector';
+import ModelSelector from './ModelSelector';
 
 const makes = ['All makes', 'Audi', 'BMW', 'Ford', 'Hyundai', 'Nissan', 'Renault', 'Toyota', 'Volkswagen'];
 const models = ['All models', 'Corolla', 'Golf', 'Focus', 'IX20', 'A4', '3 Series'];
@@ -154,8 +155,8 @@ export default function FiltersSidebar() {
           {vehicles.map((v, i) =>
             <div key={i} className="flex flex-col gap-2">
               {i > 0 && <div className="border-t border-border pt-2" />}
-              <MakeSelector value={v.make} onChange={(val) => setVehicles((prev) => prev.map((x, idx) => idx === i ? { ...x, make: val } : x))} />
-              <Sel value={v.model} onChange={(val) => setVehicles((prev) => prev.map((x, idx) => idx === i ? { ...x, model: val } : x))} options={models} placeholder="All models" />
+              <MakeSelector value={v.make} onChange={(val) => setVehicles((prev) => prev.map((x, idx) => idx === i ? { ...x, make: val, model: '' } : x))} />
+              <ModelSelector make={v.make} value={v.model} onChange={(val) => setVehicles((prev) => prev.map((x, idx) => idx === i ? { ...x, model: val } : x))} />
               <Sel value={v.trim} onChange={(val) => setVehicles((prev) => prev.map((x, idx) => idx === i ? { ...x, trim: val } : x))} options={trims} placeholder="All trims" />
             </div>
             )}
