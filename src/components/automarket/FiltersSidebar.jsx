@@ -9,18 +9,16 @@ const counties = ['All Ireland', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterf
 const radii = ['+5km', '+10km', '+20km', '+50km', '+100km', 'Nationwide'];
 const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid', 'Plug-in Hybrid', 'LPG', 'Other'];
 const transmissions = ['Manual', 'Automatic', 'Semi-Automatic'];
-// SVG silhouettes for body types (inline, no external dependency)
-const BodyTypeSVGs = {
-  SUV: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M10 26l4-10h42l6 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M16 16l4-8h24l6 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="20" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="60" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Estate: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M10 26l3-10h50l3 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M13 16l3-8h42l5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="20" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="60" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Hatchback: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M12 26l4-10h40l6 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M20 16l5-9h22l9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="21" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="59" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Saloon: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M10 26l4-10h44l4 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M18 16l6-8h20l10 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="20" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="60" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  MPV: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M10 26l3-12h50l3 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M13 14l4-8h38l5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="20" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="60" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Coupe: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M12 26l4-9h42l4 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M22 17l8-10h16l12 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="20" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="60" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Van: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M10 26V10h46l8 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><line x1="42" y1="10" x2="42" y2="26" stroke="currentColor" strokeWidth="1.5"/><circle cx="20" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="62" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Convertible: <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M12 26l4-8h44l2 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M24 18l4-6h20l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="21" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="59" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  'Pick Up': <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-9"><path d="M6 26h68M10 26l2-10h26v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M38 26V16h24l2 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 16l3-8h18l1 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="19" cy="27" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="59" cy="27" r="4" stroke="currentColor" strokeWidth="2"/></svg>,
-  Other: null,
+const bodyTypeImages = {
+  SUV: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/3ec760ce2_generated_image.png',
+  Estate: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cd2cf6c5c_generated_image.png',
+  Hatchback: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/2f0d7d7fc_generated_image.png',
+  Saloon: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/fbd551b69_generated_image.png',
+  MPV: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/e56235d3c_generated_image.png',
+  Coupe: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/0cb9c1f70_generated_image.png',
+  Van: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/e655d5475_generated_image.png',
+  Convertible: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/93eab3099_generated_image.png',
+  'Pick Up': 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/d65af73b5_generated_image.png',
 };
 
 const bodyTypes = ['SUV', 'Estate', 'Hatchback', 'Saloon', 'MPV', 'Coupe', 'Van', 'Convertible', 'Pick Up', 'Other'];
@@ -241,10 +239,12 @@ export default function FiltersSidebar() {
         <div className="grid grid-cols-3 gap-2">
           {bodyTypes.map(t => (
             <button key={t} onClick={() => toggleArr(setBodySelected)(t)}
-              className={`flex flex-col items-center justify-end gap-1.5 border rounded-lg pt-3 pb-2 px-1 transition-colors min-h-[80px] ${bodySelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
-              <div className={`${bodySelected.includes(t) ? 'text-primary' : 'text-muted-foreground'}`}>
-                {BodyTypeSVGs[t] || <div className="w-16 h-9" />}
-              </div>
+              className={`flex flex-col items-center justify-end gap-1.5 border rounded-lg pt-2 pb-2 px-1 transition-colors min-h-[80px] ${bodySelected.includes(t) ? 'border-primary bg-primary/5' : 'border-border hover:bg-secondary'}`}>
+              {bodyTypeImages[t] ? (
+                <img src={bodyTypeImages[t]} alt={t} className="w-16 h-10 object-contain" />
+              ) : (
+                <div className="w-16 h-10" />
+              )}
               <span className="text-xs font-medium leading-tight text-center text-foreground">{t}</span>
             </button>
           ))}
