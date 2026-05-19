@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Star, ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import { Search, Star, ChevronDown, ChevronUp, Plus, ShieldCheck, Info, Clock } from 'lucide-react';
 
 const makes = ['All makes', 'Audi', 'BMW', 'Ford', 'Hyundai', 'Nissan', 'Renault', 'Toyota', 'Volkswagen'];
 const models = ['All models', 'Corolla', 'Golf', 'Focus', 'IX20', 'A4', '3 Series'];
@@ -111,8 +111,8 @@ export default function FiltersSidebar() {
   return (
     <div className="bg-white rounded-xl border border-border shadow-sm p-4 text-sm">
       {/* Save Search */}
-      <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4 text-foreground">
-        <Star className="w-4 h-4 text-muted-foreground" /> Save Search
+      <button className="flex items-center justify-center gap-2 w-full bg-primary text-white rounded-lg px-4 py-2.5 hover:bg-primary/90 transition-colors mb-4 font-semibold text-sm">
+        <Star className="w-4 h-4" /> Save Search
       </button>
 
       {/* Filters header */}
@@ -122,17 +122,18 @@ export default function FiltersSidebar() {
       </div>
 
       {/* Previous searches */}
-      <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-3 text-muted-foreground">
-        <Search className="w-4 h-4" /> View your previous searches
+      <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-3 text-muted-foreground text-sm">
+        <Clock className="w-4 h-4" /> View your previous searches
       </button>
 
       <div key={resetKey}>
       {/* Trusted dealers */}
       <div className="flex items-center gap-2 mb-3">
         <input type="checkbox" id="trusted" checked={trusted} onChange={e => setTrusted(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
-        <label htmlFor="trusted" className="text-sm text-foreground flex items-center gap-1 cursor-pointer">
-          <span className="text-green-600">✓</span> Trusted dealers only <span className="text-muted-foreground">(33,485)</span>
+        <label htmlFor="trusted" className="text-sm text-foreground flex items-center gap-1 cursor-pointer flex-1">
+          <ShieldCheck className="w-3.5 h-3.5 text-green-600 flex-shrink-0" /> Trusted dealers only <span className="text-muted-foreground">(4,270)</span>
         </label>
+        <Info className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
       </div>
 
       {/* Seller type */}
@@ -150,15 +151,13 @@ export default function FiltersSidebar() {
       {/* Rating */}
       <Section title="Rating">
         <div className="flex flex-col gap-1.5">
-          {[5,4,3,2,1].map(s => (
-            <label key={s} className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" checked={ratings.includes(s)} onChange={() => toggleArr(setRatings)(s)} className="w-3.5 h-3.5 accent-primary" />
-              <div className="flex items-center gap-0.5">
-                {[1,2,3,4,5].map(i => <Star key={i} className={`w-3 h-3 ${i <= s ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />)}
-              </div>
-              <span className="text-sm text-muted-foreground">{s}+</span>
-            </label>
-          ))}
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" checked={ratings.includes(4)} onChange={() => toggleArr(setRatings)(4)} className="w-3.5 h-3.5 accent-primary" />
+            <div className="flex items-center gap-0.5">
+              {[1,2,3,4,5].map(i => <Star key={i} className={`w-3 h-3 ${i <= 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />)}
+            </div>
+            <span className="text-sm text-muted-foreground">4+ rated sellers only (6,117)</span>
+          </label>
         </div>
       </Section>
 

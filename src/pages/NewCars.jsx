@@ -158,7 +158,7 @@ export default function NewCars() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Cars"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none border-0 outline-none" />
           </div>
         </div>
 
