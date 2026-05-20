@@ -111,7 +111,7 @@ export default function Navbar() {
             <div key="Buy" className="relative" ref={buyMenuRef}>
                   <button
                 onClick={() => setShowBuyMenu((v) => !v)}
-                className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors underline">
+                className="text-[hsl(var(--foreground))] px-3 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors underline py-5">
                     Buy <ChevronDown className="w-3.5 h-3.5" />
                   </button>
                   {showBuyMenu &&
