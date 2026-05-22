@@ -369,8 +369,7 @@ export default function PlaceAd() {
                     <button
                       key={i}
                       onClick={() => setViewerIndex(i)}
-                      className="relative rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors"
-                      style={{ width: '20%', aspectRatio: '5/4' }}
+                      className="relative w-32 h-32 rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors"
                     >
                       <img src={p.preview} alt="" className="w-full h-full object-cover" style={{ transform: `rotate(${p.rotation || 0}deg)` }} />
                       {i === 0 && (
@@ -388,8 +387,7 @@ export default function PlaceAd() {
                       onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                       onDragLeave={() => setDragOver(false)}
                       onDrop={handleDrop}
-                      className={`rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
-                      style={{ width: '20%', aspectRatio: '5/4' }}
+                      className={`w-32 h-32 rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
                     >
                       <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
                         <Plus className="w-8 h-8 text-primary mb-1" />
