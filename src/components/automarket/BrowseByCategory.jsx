@@ -59,7 +59,7 @@ const categories = [
 { label: 'Quads', imgKey: 'quad', highlight: true },
 { label: 'Boats & Jet Skis', imgKey: 'boat' },
 { label: 'Boat Extras', imgKey: 'boatExtras' },
-{ label: 'Other Motor', isOther: true },
+{ label: 'Other', isOther: true },
 ]];
 
 function CategoryIcon({ imgKey, isAllMotor, isOther }) {
