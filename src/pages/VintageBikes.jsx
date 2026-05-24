@@ -6,76 +6,76 @@ import Footer from '../components/automarket/Footer';
 import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    sellerType: 'Collector',
-    sellerRating: 4.9,
-    spotlight: true,
-    title: 'Harley-Davidson Sportster 1985 – Restored',
-    year: '1985',
-    fuel: 'Petrol',
-    mileage: '15,200 km',
-    timeAgo: '1 day',
-    location: 'Dublin, Dublin',
-    price: '€12,500',
-    photos: 18,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-  {
-    id: 2,
-    sellerType: 'Private Seller',
-    sellerRating: 4.7,
-    spotlight: true,
-    title: 'Triumph Bonneville 1972 – Classic',
-    year: '1972',
-    fuel: 'Petrol',
-    mileage: '8,900 km',
-    timeAgo: '3 days',
-    location: 'Cork, Cork',
-    price: '€9,800',
-    photos: 14,
-    image: 'https://images.unsplash.com/photo-1539860381487-90123d64bd32?w=600&q=80',
-  },
-  {
-    id: 3,
-    sellerType: 'Dealership',
-    sellerRating: 4.8,
-    spotlight: false,
-    title: 'BSA Gold Star 1959',
-    year: '1959',
-    fuel: 'Petrol',
-    mileage: '22,100 km',
-    timeAgo: '1 week',
-    location: 'Galway, Galway',
-    price: '€8,200',
-    photos: 12,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-  {
-    id: 4,
-    sellerType: 'Private Seller',
-    sellerRating: 4.5,
-    spotlight: false,
-    title: 'Norton Commando 1970 – Rare',
-    year: '1970',
-    fuel: 'Petrol',
-    mileage: '19,400 km',
-    timeAgo: '5 days',
-    location: 'Limerick, Limerick',
-    price: '€11,300',
-    photos: 16,
-    image: 'https://images.unsplash.com/photo-1537350994076-726c6e5e0e7d?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  sellerType: 'Collector',
+  sellerRating: 4.9,
+  spotlight: true,
+  title: 'Harley-Davidson Sportster 1985 – Restored',
+  year: '1985',
+  fuel: 'Petrol',
+  mileage: '15,200 km',
+  timeAgo: '1 day',
+  location: 'Dublin, Dublin',
+  price: '€12,500',
+  photos: 18,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+},
+{
+  id: 2,
+  sellerType: 'Private Seller',
+  sellerRating: 4.7,
+  spotlight: true,
+  title: 'Triumph Bonneville 1972 – Classic',
+  year: '1972',
+  fuel: 'Petrol',
+  mileage: '8,900 km',
+  timeAgo: '3 days',
+  location: 'Cork, Cork',
+  price: '€9,800',
+  photos: 14,
+  image: 'https://images.unsplash.com/photo-1539860381487-90123d64bd32?w=600&q=80'
+},
+{
+  id: 3,
+  sellerType: 'Dealership',
+  sellerRating: 4.8,
+  spotlight: false,
+  title: 'BSA Gold Star 1959',
+  year: '1959',
+  fuel: 'Petrol',
+  mileage: '22,100 km',
+  timeAgo: '1 week',
+  location: 'Galway, Galway',
+  price: '€8,200',
+  photos: 12,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+},
+{
+  id: 4,
+  sellerType: 'Private Seller',
+  sellerRating: 4.5,
+  spotlight: false,
+  title: 'Norton Commando 1970 – Rare',
+  year: '1970',
+  fuel: 'Petrol',
+  mileage: '19,400 km',
+  timeAgo: '5 days',
+  location: 'Limerick, Limerick',
+  price: '€11,300',
+  photos: 16,
+  image: 'https://images.unsplash.com/photo-1537350994076-726c6e5e0e7d?w=600&q=80'
+}];
+
 
 function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(s => (
-        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
-      ))}
-    </div>
-  );
+      {[1, 2, 3, 4, 5].map((s) =>
+      <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
+      )}
+    </div>);
+
 }
 
 export default function VintageBikes() {
@@ -83,12 +83,12 @@ export default function VintageBikes() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(item =>
-    !search || item.title.toLowerCase().includes(search.toLowerCase()) || item.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((item) =>
+  !search || item.title.toLowerCase().includes(search.toLowerCase()) || item.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -105,10 +105,10 @@ export default function VintageBikes() {
           <span className="text-foreground font-medium">Vintage Bikes</span>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Vintage Bikes in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Vintage Bikes</h1>
           <div className="relative w-full sm:w-72">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search Vintage Bikes" className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Vintage Bikes" className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30" />
           </div>
         </div>
         <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
@@ -138,8 +138,8 @@ export default function VintageBikes() {
               </div>
             </div>
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map(item => (
-                <div key={item.id} className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              {filtered.map((item) =>
+              <div key={item.id} className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                   <div className={viewMode === 'grid' ? 'flex flex-col' : 'flex flex-col sm:flex-row'}>
                     <div className={`relative flex-shrink-0 ${viewMode === 'grid' ? 'h-44 w-full' : 'sm:w-56 h-44 sm:h-auto'}`}>
                       {item.spotlight && <span className="absolute top-2 left-2 bg-black/70 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">Spotlight</span>}
@@ -152,7 +152,7 @@ export default function VintageBikes() {
                       <div>
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <span className="text-xs text-muted-foreground">{item.sellerType}</span>
-                          {item.sellerRating ? (<><StarRating rating={item.sellerRating} /><span className="text-xs text-muted-foreground">{item.sellerRating}</span></>) : (<span className="text-xs text-muted-foreground flex items-center gap-1"><Star className="w-3 h-3 text-gray-300 fill-gray-300" /> No rating</span>)}
+                          {item.sellerRating ? <><StarRating rating={item.sellerRating} /><span className="text-xs text-muted-foreground">{item.sellerRating}</span></> : <span className="text-xs text-muted-foreground flex items-center gap-1"><Star className="w-3 h-3 text-gray-300 fill-gray-300" /> No rating</span>}
                         </div>
                         <h3 className="text-base font-bold text-foreground mb-1 hover:text-primary cursor-pointer transition-colors">{item.title}</h3>
                         {item.year && <p className="text-xs text-muted-foreground">{item.year} · {item.fuel} · {item.mileage}</p>}
@@ -165,12 +165,12 @@ export default function VintageBikes() {
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
       </div>
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
