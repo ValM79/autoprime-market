@@ -24,11 +24,11 @@ const sections = [
   },
   {
     label: 'Trucks & Vans',
-    subsections: ['Trucks', 'Commercials', 'Trailers', 'Campers', 'Coaches & Buses', 'Plant Machinery', 'Motorbike Extras', 'Caravans'],
+    subsections: ['Trucks', 'Commercials', 'Trailers', 'Campers', 'Coaches & Buses', 'Plant Machinery', 'Motorbike Extras', 'Caravans', 'Bikes & Bicycles'],
   },
   {
     label: 'Bikes & Boats',
-    subsections: ['Motorbikes', 'Vintage Bikes', 'Scooters', 'Quads', 'Boats & Jet Skis', 'Boat Extras', 'Other Motor'],
+    subsections: ['Motorbikes', 'Vintage Bikes', 'Scooters', 'Quads', 'Boats & Jet Skis', 'Boat Extras', 'Other'],
   },
 ];
 
@@ -56,8 +56,15 @@ const categoryToSection = {
   quads: { section: 'Bikes & Boats', subsection: 'Quads' },
   'boats & jet skis': { section: 'Bikes & Boats', subsection: 'Boats & Jet Skis' },
   'boat extras': { section: 'Bikes & Boats', subsection: 'Boat Extras' },
-  'other motor': { section: 'Bikes & Boats', subsection: 'Other Motor' },
+  'other motor': { section: 'Bikes & Boats', subsection: 'Other' },
+  other: { section: 'Bikes & Boats', subsection: 'Other' },
+  'bikes & bicycles': { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
+  bikes: { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
+  bicycle: { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
 };
+
+// All category names flattened for suggestions
+const allCategories = sections.flatMap((s) => s.subsections);
 
 const emptyForm = {
   category: '',
@@ -110,6 +117,7 @@ export default function PlaceAd() {
   const [loadingVehicle, setLoadingVehicle] = useState(false);
   const [vehicleError, setVehicleError] = useState('');
   const [editingVehicle, setEditingVehicle] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const toggle = (field) => () => setForm((f) => ({ ...f, [field]: !f[field] }));
@@ -118,6 +126,7 @@ export default function PlaceAd() {
     const val = e.target.value;
     const trimmed = val.trim().toLowerCase();
     const match = categoryToSection[trimmed];
+    setShowSuggestions(true);
 
     if (match) {
       setForm((f) => ({
@@ -127,7 +136,6 @@ export default function PlaceAd() {
         subsection: match.subsection,
       }));
     } else if (trimmed) {
-      // Auto-create a new section/subsection from the typed value
       const capitalized = val.trim().charAt(0).toUpperCase() + val.trim().slice(1);
       setForm((f) => ({
         ...f,
@@ -139,6 +147,22 @@ export default function PlaceAd() {
       setForm((f) => ({ ...f, category: val, section: '', subsection: '' }));
     }
   };
+
+  const handleSelectSuggestion = (categoryName) => {
+    const key = categoryName.toLowerCase();
+    const match = categoryToSection[key];
+    if (match) {
+      setForm((f) => ({ ...f, category: categoryName, section: match.section, subsection: match.subsection }));
+    } else {
+      setForm((f) => ({ ...f, category: categoryName, section: categoryName, subsection: categoryName }));
+    }
+    setShowSuggestions(false);
+    setCategoryStarted(true);
+  };
+
+  const filteredSuggestions = form.category.trim()
+    ? allCategories.filter((c) => c.toLowerCase().includes(form.category.trim().toLowerCase()))
+    : [];
 
   const currentSectionObj = sections.find((s) => s.label === form.section);
   const subsections = currentSectionObj ? currentSectionObj.subsections : [];
@@ -271,25 +295,44 @@ export default function PlaceAd() {
           <Section title="What are you selling?">
             <div className="flex flex-col gap-4">
               <div className="flex gap-3">
-                <input
-                  type="text"
-                  value={form.category}
-                  onChange={handleCategoryChange}
-                  onKeyDown={(e) => { if (e.key === 'Enter' && form.category) setCategoryStarted(true); }}
-                  placeholder="e.g. Car, Van, Truck"
-                  className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
-                />
-                <button
-                  onClick={() => {
-                    if (form.category) {
-                      setCategoryStarted(true);
-                    }
-                  }}
-                  className="bg-muted text-foreground font-semibold px-8 py-2.5 rounded-lg hover:bg-muted/80 transition-colors text-sm whitespace-nowrap"
-                >
-                  Start
-                </button>
-              </div>
+                 <div className="flex-1 relative">
+                   <input
+                     type="text"
+                     value={form.category}
+                     onChange={handleCategoryChange}
+                     onFocus={() => setShowSuggestions(true)}
+                     onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                     onKeyDown={(e) => { if (e.key === 'Enter' && form.category) { setShowSuggestions(false); setCategoryStarted(true); } }}
+                     placeholder="e.g. Car, Van, Truck"
+                     className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                   />
+                   {showSuggestions && filteredSuggestions.length > 0 && (
+                     <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-white border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                       {filteredSuggestions.map((cat) => (
+                         <button
+                           key={cat}
+                           type="button"
+                           onMouseDown={() => handleSelectSuggestion(cat)}
+                           className="w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
+                         >
+                           {cat}
+                         </button>
+                       ))}
+                     </div>
+                   )}
+                 </div>
+                 <button
+                   onClick={() => {
+                     if (form.category) {
+                       setShowSuggestions(false);
+                       setCategoryStarted(true);
+                     }
+                   }}
+                   className="bg-muted text-foreground font-semibold px-8 py-2.5 rounded-lg hover:bg-muted/80 transition-colors text-sm whitespace-nowrap"
+                 >
+                   Start
+                 </button>
+               </div>
 
               {categoryStarted && (
                 <>
