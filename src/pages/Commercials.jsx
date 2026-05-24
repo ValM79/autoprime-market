@@ -18,157 +18,157 @@ const regCountries = ['Any', 'Ireland', 'United Kingdom', 'Germany', 'France', '
 const adTypes = ['All', 'For Sale', 'Wanted'];
 
 const listings = [
-  {
-    id: 1,
-    dealer: 'Dennehy Renault Pro+',
-    dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=50&q=80',
-    dealerType: 'Franchise Dealership',
-    dealerRating: 4.8,
-    spotlight: true,
-    title: 'Renault Master Leasing or contract hire',
-    year: 2025,
-    engine: '2.0 Diesel',
-    mileage: '0 km',
-    daysAgo: '3 days',
-    location: 'Dublin',
-    price: '€1',
-    photos: 1,
-    saved: false,
-    image: 'https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=400&q=80',
-    badge: 'IN RENTAL',
-    badgeDesc: 'BEST CONTRACT HIRE RATES AVAILABLE\n12-month Minimum Lease\nNo Commercial Insurance Provided',
-  },
-  {
-    id: 2,
-    dealer: 'Kylemore Cars',
-    dealerLogo: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=50&q=80',
-    dealerType: 'Trusted Dealer',
-    dealerRating: 4.6,
-    spotlight: false,
-    title: 'Ford Transit Custom L2 Panel Van',
-    year: 2023,
-    engine: '2.0 EcoBlue',
-    mileage: '24,500 km',
-    daysAgo: '1 day',
-    location: 'Cork',
-    price: '€28,950',
-    photos: 8,
-    saved: false,
-    image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=400&q=80',
-    badge: null,
-  },
-  {
-    id: 3,
-    dealer: 'Van Centre Dublin',
-    dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=50&q=80',
-    dealerType: 'Dealership',
-    dealerRating: 4.3,
-    spotlight: false,
-    title: 'Mercedes-Benz Sprinter 314 CDI LWB',
-    year: 2022,
-    engine: '2.1 CDI',
-    mileage: '61,200 km',
-    daysAgo: '5 days',
-    location: 'Dublin',
-    price: '€34,500',
-    photos: 12,
-    saved: false,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
-    badge: null,
-  },
-  {
-    id: 4,
-    dealer: 'Galway Commercial Vehicles',
-    dealerLogo: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=50&q=80',
-    dealerType: 'Private Seller',
-    dealerRating: null,
-    spotlight: false,
-    title: 'Volkswagen Crafter 35 TDI High Roof',
-    year: 2021,
-    engine: '2.0 TDI',
-    mileage: '88,000 km',
-    daysAgo: '2 days',
-    location: 'Galway',
-    price: '€22,000',
-    photos: 6,
-    saved: false,
-    image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',
-    badge: null,
-  },
-  {
-    id: 5,
-    dealer: 'Murphy Commercial',
-    dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=50&q=80',
-    dealerType: 'Dealership',
-    dealerRating: 4.5,
-    spotlight: false,
-    title: 'Peugeot Expert 1000 1.5 BlueHDi',
-    year: 2023,
-    engine: '1.5 Diesel',
-    mileage: '15,300 km',
-    daysAgo: '4 days',
-    location: 'Limerick',
-    price: '€26,750',
-    photos: 9,
-    saved: false,
-    image: 'https://images.unsplash.com/photo-1517994112540-009c47ea476b?w=400&q=80',
-    badge: null,
-  },
-  {
-    id: 6,
-    dealer: 'Dublin Van Sales',
-    dealerLogo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=50&q=80',
-    dealerType: 'Trusted Dealer',
-    dealerRating: 4.7,
-    spotlight: false,
-    title: 'Fiat Ducato 35 Maxi XL Dropside',
-    year: 2022,
-    engine: '2.3 Multijet',
-    mileage: '47,000 km',
-    daysAgo: '1 week',
-    location: 'Dublin',
-    price: '€31,200',
-    photos: 7,
-    saved: false,
-    image: 'https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&q=80',
-    badge: null,
-  },
-];
+{
+  id: 1,
+  dealer: 'Dennehy Renault Pro+',
+  dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=50&q=80',
+  dealerType: 'Franchise Dealership',
+  dealerRating: 4.8,
+  spotlight: true,
+  title: 'Renault Master Leasing or contract hire',
+  year: 2025,
+  engine: '2.0 Diesel',
+  mileage: '0 km',
+  daysAgo: '3 days',
+  location: 'Dublin',
+  price: '€1',
+  photos: 1,
+  saved: false,
+  image: 'https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=400&q=80',
+  badge: 'IN RENTAL',
+  badgeDesc: 'BEST CONTRACT HIRE RATES AVAILABLE\n12-month Minimum Lease\nNo Commercial Insurance Provided'
+},
+{
+  id: 2,
+  dealer: 'Kylemore Cars',
+  dealerLogo: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=50&q=80',
+  dealerType: 'Trusted Dealer',
+  dealerRating: 4.6,
+  spotlight: false,
+  title: 'Ford Transit Custom L2 Panel Van',
+  year: 2023,
+  engine: '2.0 EcoBlue',
+  mileage: '24,500 km',
+  daysAgo: '1 day',
+  location: 'Cork',
+  price: '€28,950',
+  photos: 8,
+  saved: false,
+  image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=400&q=80',
+  badge: null
+},
+{
+  id: 3,
+  dealer: 'Van Centre Dublin',
+  dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=50&q=80',
+  dealerType: 'Dealership',
+  dealerRating: 4.3,
+  spotlight: false,
+  title: 'Mercedes-Benz Sprinter 314 CDI LWB',
+  year: 2022,
+  engine: '2.1 CDI',
+  mileage: '61,200 km',
+  daysAgo: '5 days',
+  location: 'Dublin',
+  price: '€34,500',
+  photos: 12,
+  saved: false,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+  badge: null
+},
+{
+  id: 4,
+  dealer: 'Galway Commercial Vehicles',
+  dealerLogo: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=50&q=80',
+  dealerType: 'Private Seller',
+  dealerRating: null,
+  spotlight: false,
+  title: 'Volkswagen Crafter 35 TDI High Roof',
+  year: 2021,
+  engine: '2.0 TDI',
+  mileage: '88,000 km',
+  daysAgo: '2 days',
+  location: 'Galway',
+  price: '€22,000',
+  photos: 6,
+  saved: false,
+  image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',
+  badge: null
+},
+{
+  id: 5,
+  dealer: 'Murphy Commercial',
+  dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=50&q=80',
+  dealerType: 'Dealership',
+  dealerRating: 4.5,
+  spotlight: false,
+  title: 'Peugeot Expert 1000 1.5 BlueHDi',
+  year: 2023,
+  engine: '1.5 Diesel',
+  mileage: '15,300 km',
+  daysAgo: '4 days',
+  location: 'Limerick',
+  price: '€26,750',
+  photos: 9,
+  saved: false,
+  image: 'https://images.unsplash.com/photo-1517994112540-009c47ea476b?w=400&q=80',
+  badge: null
+},
+{
+  id: 6,
+  dealer: 'Dublin Van Sales',
+  dealerLogo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=50&q=80',
+  dealerType: 'Trusted Dealer',
+  dealerRating: 4.7,
+  spotlight: false,
+  title: 'Fiat Ducato 35 Maxi XL Dropside',
+  year: 2022,
+  engine: '2.3 Multijet',
+  mileage: '47,000 km',
+  daysAgo: '1 week',
+  location: 'Dublin',
+  price: '€31,200',
+  photos: 7,
+  saved: false,
+  image: 'https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=400&q=80',
+  badge: null
+}];
+
 
 function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(s => (
-        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
-      ))}
-    </div>
-  );
+      {[1, 2, 3, 4, 5].map((s) =>
+      <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
+      )}
+    </div>);
+
 }
 
 function FilterSection({ title, defaultOpen = true, children }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="border-b border-border py-3">
-      <button onClick={() => setOpen(v => !v)} className="flex items-center justify-between w-full text-sm font-semibold text-foreground">
+      <button onClick={() => setOpen((v) => !v)} className="flex items-center justify-between w-full text-sm font-semibold text-foreground">
         {title}
         {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       {open && <div className="mt-3">{children}</div>}
-    </div>
-  );
+    </div>);
+
 }
 
 function Sel({ value, onChange, options, placeholder }) {
   return (
     <div className="relative">
-      <select value={value} onChange={e => onChange(e.target.value)}
-        className="w-full appearance-none border border-border rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary/40 pr-7 text-foreground">
+      <select value={value} onChange={(e) => onChange(e.target.value)}
+      className="w-full appearance-none border border-border rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary/40 pr-7 text-foreground">
         {placeholder && <option value="">{placeholder}</option>}
-        {options.map(o => <option key={o} value={o}>{o}</option>)}
+        {options.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
       <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
-    </div>
-  );
+    </div>);
+
 }
 
 export default function Commercials() {
@@ -193,22 +193,22 @@ export default function Commercials() {
   const [adType, setAdType] = useState('All');
   const [savedIds, setSavedIds] = useState([]);
 
-  const toggleSaved = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-  const toggleArr = (setter) => (val) => setter(prev => prev.includes(val) ? prev.filter(x => x !== val) : [...prev, val]);
+  const toggleSaved = (id) => setSavedIds((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
+  const toggleArr = (setter) => (val) => setter((prev) => prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]);
 
   const handleReset = () => {
-    setCounty('All Ireland'); setRadius('+5km');
-    setMake('All makes'); setModel('All models');
-    setYearFrom(''); setYearTo('');
-    setPriceFrom(''); setPriceTo('');
+    setCounty('All Ireland');setRadius('+5km');
+    setMake('All makes');setModel('All models');
+    setYearFrom('');setYearTo('');
+    setPriceFrom('');setPriceTo('');
     setSellerTypes([]);
-    setMileageFrom(''); setMileageTo('');
-    setFuelSelected([]); setTransSelected([]); setBodySelected([]);
-    setColour('Any'); setRegCountry('Any');
-    setReserveOnline(false); setAdType('All');
+    setMileageFrom('');setMileageTo('');
+    setFuelSelected([]);setTransSelected([]);setBodySelected([]);
+    setColour('Any');setRegCountry('Any');
+    setReserveOnline(false);setAdType('All');
   };
 
-  const filtered = listings.filter(l => {
+  const filtered = listings.filter((l) => {
     const matchSearch = !search || l.title.toLowerCase().includes(search.toLowerCase());
     const matchCounty = county === 'All Ireland' || l.location === county;
     const matchMake = make === 'All makes' || l.title.toLowerCase().includes(make.toLowerCase());
@@ -233,16 +233,16 @@ export default function Commercials() {
 
         {/* Header row */}
         <div className="mb-5">
-          <h1 className="text-2xl font-bold text-foreground mb-3">Commercials in Ireland</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-3">Commercials</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Commercials"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -290,70 +290,70 @@ export default function Commercials() {
 
               <FilterSection title="Price" defaultOpen={false}>
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="number" value={priceFrom} onChange={e => setPriceFrom(e.target.value)} placeholder="From €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                  <input type="number" value={priceTo} onChange={e => setPriceTo(e.target.value)} placeholder="To €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={priceFrom} onChange={(e) => setPriceFrom(e.target.value)} placeholder="From €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={priceTo} onChange={(e) => setPriceTo(e.target.value)} placeholder="To €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
                 </div>
               </FilterSection>
 
               <FilterSection title="Seller type" defaultOpen={false}>
                 <div className="flex flex-col gap-1.5">
-                  {[['Dealership', '8,420'], ['Private seller', '4,790']].map(([label, count]) => (
-                    <label key={label} className="flex items-center gap-2 cursor-pointer">
+                  {[['Dealership', '8,420'], ['Private seller', '4,790']].map(([label, count]) =>
+                  <label key={label} className="flex items-center gap-2 cursor-pointer">
                       <input type="checkbox" checked={sellerTypes.includes(label)} onChange={() => toggleArr(setSellerTypes)(label)} className="w-3.5 h-3.5 accent-primary" />
                       <span className="text-sm text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
                     </label>
-                  ))}
+                  )}
                 </div>
               </FilterSection>
 
               <FilterSection title="Mileage" defaultOpen={false}>
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="number" value={mileageFrom} onChange={e => setMileageFrom(e.target.value)} placeholder="From km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                  <input type="number" value={mileageTo} onChange={e => setMileageTo(e.target.value)} placeholder="To km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={mileageFrom} onChange={(e) => setMileageFrom(e.target.value)} placeholder="From km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={mileageTo} onChange={(e) => setMileageTo(e.target.value)} placeholder="To km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
                 </div>
               </FilterSection>
 
               <FilterSection title="Fuel type" defaultOpen={false}>
                 <div className="flex flex-col gap-1.5">
-                  {fuelTypes.map(f => (
-                    <label key={f} className="flex items-center gap-2 cursor-pointer">
+                  {fuelTypes.map((f) =>
+                  <label key={f} className="flex items-center gap-2 cursor-pointer">
                       <input type="checkbox" checked={fuelSelected.includes(f)} onChange={() => toggleArr(setFuelSelected)(f)} className="w-3.5 h-3.5 accent-primary" />
                       <span className="text-sm text-foreground">{f}</span>
                     </label>
-                  ))}
+                  )}
                 </div>
               </FilterSection>
 
               <FilterSection title="Transmission" defaultOpen={false}>
                 <div className="flex flex-wrap gap-2">
-                  {transmissions.map(t => (
-                    <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
-                      className={`px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
+                  {transmissions.map((t) =>
+                  <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
+                  className={`px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
                       {t}
                     </button>
-                  ))}
+                  )}
                 </div>
               </FilterSection>
 
               <FilterSection title="Body type" defaultOpen={false}>
                 <div className="flex flex-col gap-1.5">
-                  {bodyTypes.map(b => (
-                    <label key={b} className="flex items-center gap-2 cursor-pointer">
+                  {bodyTypes.map((b) =>
+                  <label key={b} className="flex items-center gap-2 cursor-pointer">
                       <input type="checkbox" checked={bodySelected.includes(b)} onChange={() => toggleArr(setBodySelected)(b)} className="w-3.5 h-3.5 accent-primary" />
                       <span className="text-sm text-foreground">{b}</span>
                     </label>
-                  ))}
+                  )}
                 </div>
               </FilterSection>
 
               <FilterSection title="Colour" defaultOpen={false}>
                 <div className="flex flex-wrap gap-2">
-                  {colours.map(c => (
-                    <button key={c} onClick={() => setColour(c)}
-                      className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${colour === c ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
+                  {colours.map((c) =>
+                  <button key={c} onClick={() => setColour(c)}
+                  className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${colour === c ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
                       {c}
                     </button>
-                  ))}
+                  )}
                 </div>
               </FilterSection>
 
@@ -363,19 +363,19 @@ export default function Commercials() {
 
               <FilterSection title="Reserve online" defaultOpen={false}>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" checked={reserveOnline} onChange={e => setReserveOnline(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
+                  <input type="checkbox" checked={reserveOnline} onChange={(e) => setReserveOnline(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
                   <span className="text-sm text-foreground">Reserve online only</span>
                 </label>
               </FilterSection>
 
               <FilterSection title="Ad type" defaultOpen={false}>
                 <div className="flex flex-col gap-1.5">
-                  {adTypes.map(t => (
-                    <label key={t} className="flex items-center gap-2 cursor-pointer">
+                  {adTypes.map((t) =>
+                  <label key={t} className="flex items-center gap-2 cursor-pointer">
                       <input type="radio" name="commercialAdType" checked={adType === t} onChange={() => setAdType(t)} className="w-3.5 h-3.5 accent-primary" />
                       <span className="text-sm text-foreground">{t}</span>
                     </label>
-                  ))}
+                  )}
                 </div>
               </FilterSection>
             </div>
@@ -395,26 +395,26 @@ export default function Commercials() {
             </div>
 
             <div className="flex flex-col gap-4">
-              {filtered.map(listing => (
-                <ListingCard
-                  key={listing.id}
-                  item={{
-                    ...listing,
-                    sellerType: listing.dealerType,
-                    sellerRating: listing.dealerRating,
-                    timeAgo: listing.daysAgo,
-                  }}
-                  saved={savedIds.includes(listing.id)}
-                  onToggleSave={toggleSaved}
-                  viewMode="list"
-                />
-              ))}
+              {filtered.map((listing) =>
+              <ListingCard
+                key={listing.id}
+                item={{
+                  ...listing,
+                  sellerType: listing.dealerType,
+                  sellerRating: listing.dealerRating,
+                  timeAgo: listing.daysAgo
+                }}
+                saved={savedIds.includes(listing.id)}
+                onToggleSave={toggleSaved}
+                viewMode="list" />
+
+              )}
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
