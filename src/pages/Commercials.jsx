@@ -148,12 +148,12 @@ function StarRating({ rating }) {
 function FilterSection({ title, defaultOpen = true, children }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-border py-4">
-      <button onClick={() => setOpen((v) => !v)} className="flex items-center justify-between w-full text-base font-semibold text-foreground">
+    <div className="border-b border-border py-3">
+      <button onClick={() => setOpen((v) => !v)} className="flex items-center justify-between w-full text-sm font-semibold text-foreground">
         {title}
-        {open ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
+        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
-      {open && <div className="mt-4">{children}</div>}
+      {open && <div className="mt-3">{children}</div>}
     </div>);
 
 }
@@ -162,11 +162,11 @@ function Sel({ value, onChange, options, placeholder }) {
   return (
     <div className="relative">
       <select value={value} onChange={(e) => onChange(e.target.value)}
-      className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-base bg-white focus:outline-none focus:ring-1 focus:ring-primary/40 pr-8 text-foreground">
+      className="w-full appearance-none border border-border rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary/40 pr-7 text-foreground">
         {placeholder && <option value="">{placeholder}</option>}
         {options.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
-      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+      <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
     </div>);
 
 }
@@ -253,18 +253,18 @@ export default function Commercials() {
         <div className="flex gap-6">
           {/* Sidebar */}
           <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-            <div className="text-base ml-1">
-              <button className="flex items-center justify-center gap-2 w-full bg-primary text-white rounded-lg px-4 py-3 hover:bg-primary/90 transition-colors mb-5 font-semibold text-base">
-                <Star className="w-5 h-5" /> Save Search
+            <div className="bg-white rounded-xl border border-border shadow-sm p-4 text-sm">
+              <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4 text-foreground">
+                <Star className="w-4 h-4 text-muted-foreground" /> Save Search
               </button>
 
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-bold text-lg text-foreground">Filters</span>
-                <button onClick={handleReset} className="text-sm text-primary hover:underline mx-3">Reset All</button>
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-bold text-foreground">Filters</span>
+                <button onClick={handleReset} className="text-xs text-primary hover:underline">Reset All</button>
               </div>
 
-              <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-3 hover:bg-secondary transition-colors mb-4 text-muted-foreground text-base">
-                <Search className="w-5 h-5" /> View your previous searches
+              <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-3 text-muted-foreground">
+                <Search className="w-4 h-4" /> View your previous searches
               </button>
 
               <FilterSection title="Location">
@@ -290,17 +290,17 @@ export default function Commercials() {
 
               <FilterSection title="Price" defaultOpen={false}>
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="number" value={priceFrom} onChange={(e) => setPriceFrom(e.target.value)} placeholder="From €" className="border border-border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                  <input type="number" value={priceTo} onChange={(e) => setPriceTo(e.target.value)} placeholder="To €" className="border border-border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={priceFrom} onChange={(e) => setPriceFrom(e.target.value)} placeholder="From €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={priceTo} onChange={(e) => setPriceTo(e.target.value)} placeholder="To €" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
                 </div>
               </FilterSection>
 
               <FilterSection title="Seller type" defaultOpen={false}>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1.5">
                   {[['Dealership', '8,420'], ['Private seller', '4,790']].map(([label, count]) =>
-                  <label key={label} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" checked={sellerTypes.includes(label)} onChange={() => toggleArr(setSellerTypes)(label)} className="w-5 h-5 accent-primary" />
-                      <span className="text-base text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
+                  <label key={label} className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" checked={sellerTypes.includes(label)} onChange={() => toggleArr(setSellerTypes)(label)} className="w-3.5 h-3.5 accent-primary" />
+                      <span className="text-sm text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
                     </label>
                   )}
                 </div>
@@ -308,17 +308,17 @@ export default function Commercials() {
 
               <FilterSection title="Mileage" defaultOpen={false}>
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="number" value={mileageFrom} onChange={(e) => setMileageFrom(e.target.value)} placeholder="From km" className="border border-border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
-                  <input type="number" value={mileageTo} onChange={(e) => setMileageTo(e.target.value)} placeholder="To km" className="border border-border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={mileageFrom} onChange={(e) => setMileageFrom(e.target.value)} placeholder="From km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
+                  <input type="number" value={mileageTo} onChange={(e) => setMileageTo(e.target.value)} placeholder="To km" className="border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/40 w-full" />
                 </div>
               </FilterSection>
 
               <FilterSection title="Fuel type" defaultOpen={false}>
-                <div className="flex flex-col gap-2.5">
+                <div className="flex flex-col gap-1.5">
                   {fuelTypes.map((f) =>
-                  <label key={f} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" checked={fuelSelected.includes(f)} onChange={() => toggleArr(setFuelSelected)(f)} className="w-5 h-5 accent-primary" />
-                      <span className="text-base text-foreground">{f}</span>
+                  <label key={f} className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" checked={fuelSelected.includes(f)} onChange={() => toggleArr(setFuelSelected)(f)} className="w-3.5 h-3.5 accent-primary" />
+                      <span className="text-sm text-foreground">{f}</span>
                     </label>
                   )}
                 </div>
@@ -328,7 +328,7 @@ export default function Commercials() {
                 <div className="flex flex-wrap gap-2">
                   {transmissions.map((t) =>
                   <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
-                  className={`px-4 py-2 border transition-colors rounded-md font-bold text-base text-foreground ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:bg-secondary'}`}>
+                  className={`px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
                       {t}
                     </button>
                   )}
@@ -336,11 +336,11 @@ export default function Commercials() {
               </FilterSection>
 
               <FilterSection title="Body type" defaultOpen={false}>
-                <div className="flex flex-col gap-2.5">
+                <div className="flex flex-col gap-1.5">
                   {bodyTypes.map((b) =>
-                  <label key={b} className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" checked={bodySelected.includes(b)} onChange={() => toggleArr(setBodySelected)(b)} className="w-5 h-5 accent-primary" />
-                      <span className="text-base text-foreground">{b}</span>
+                  <label key={b} className="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" checked={bodySelected.includes(b)} onChange={() => toggleArr(setBodySelected)(b)} className="w-3.5 h-3.5 accent-primary" />
+                      <span className="text-sm text-foreground">{b}</span>
                     </label>
                   )}
                 </div>
@@ -350,7 +350,7 @@ export default function Commercials() {
                 <div className="flex flex-wrap gap-2">
                   {colours.map((c) =>
                   <button key={c} onClick={() => setColour(c)}
-                  className={`px-4 py-2 rounded-full border text-sm transition-colors ${colour === c ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
+                  className={`px-3 py-1.5 rounded-full border text-xs transition-colors ${colour === c ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
                       {c}
                     </button>
                   )}
@@ -362,18 +362,18 @@ export default function Commercials() {
               </FilterSection>
 
               <FilterSection title="Reserve online" defaultOpen={false}>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" checked={reserveOnline} onChange={(e) => setReserveOnline(e.target.checked)} className="w-5 h-5 accent-primary" />
-                  <span className="text-base text-foreground">Reserve online only</span>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={reserveOnline} onChange={(e) => setReserveOnline(e.target.checked)} className="w-3.5 h-3.5 accent-primary" />
+                  <span className="text-sm text-foreground">Reserve online only</span>
                 </label>
               </FilterSection>
 
               <FilterSection title="Ad type" defaultOpen={false}>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1.5">
                   {adTypes.map((t) =>
-                  <label key={t} className="flex items-center gap-3 cursor-pointer">
-                      <input type="radio" name="commercialAdType" checked={adType === t} onChange={() => setAdType(t)} className="w-5 h-5 accent-primary" />
-                      <span className="text-base text-foreground">{t}</span>
+                  <label key={t} className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="commercialAdType" checked={adType === t} onChange={() => setAdType(t)} className="w-3.5 h-3.5 accent-primary" />
+                      <span className="text-sm text-foreground">{t}</span>
                     </label>
                   )}
                 </div>
