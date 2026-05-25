@@ -32,6 +32,16 @@ const sections = [
   },
 ];
 
+// All individual category names matching BrowseByCategory
+const browseCategories = [
+  'New Cars', 'Cars', 'Cars from Dealerships', 'Vintage Cars', 'Modified Cars',
+  'Car Parts', 'Car Extras', 'Rally Cars', 'Breaking & Repairables',
+  'Trucks', 'Commercials', 'Trailers', 'Campers', 'Coaches & Buses',
+  'Plant Machinery', 'Motorbike Extras', 'Caravans', 'Bikes & Bicycles',
+  'Motorbikes', 'Vintage Bikes', 'Scooters', 'Quads', 'Boats & Jet Skis',
+  'Boat Extras', 'Other',
+];
+
 const categoryToSection = {
   'new cars': { section: 'Cars', subsection: 'New Cars' },
   cars: { section: 'Cars', subsection: 'Cars' },
@@ -50,15 +60,15 @@ const categoryToSection = {
   'plant machinery': { section: 'Trucks & Vans', subsection: 'Plant Machinery' },
   'motorbike extras': { section: 'Trucks & Vans', subsection: 'Motorbike Extras' },
   caravans: { section: 'Trucks & Vans', subsection: 'Caravans' },
+  'bikes & bicycles': { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
   motorbikes: { section: 'Bikes & Boats', subsection: 'Motorbikes' },
   'vintage bikes': { section: 'Bikes & Boats', subsection: 'Vintage Bikes' },
   scooters: { section: 'Bikes & Boats', subsection: 'Scooters' },
   quads: { section: 'Bikes & Boats', subsection: 'Quads' },
   'boats & jet skis': { section: 'Bikes & Boats', subsection: 'Boats & Jet Skis' },
   'boat extras': { section: 'Bikes & Boats', subsection: 'Boat Extras' },
-  'other motor': { section: 'Bikes & Boats', subsection: 'Other' },
   other: { section: 'Bikes & Boats', subsection: 'Other' },
-  'bikes & bicycles': { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
+  'other motor': { section: 'Bikes & Boats', subsection: 'Other' },
   bikes: { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
   bicycle: { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
 };
@@ -343,40 +353,25 @@ export default function PlaceAd() {
                     <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
                     <div className="relative">
                       <select
-                        value={form.section}
-                        onChange={(e) => setForm((f) => ({ ...f, section: e.target.value, subsection: '' }))}
+                        value={form.subsection}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          const key = val.toLowerCase();
+                          const match = categoryToSection[key];
+                          setForm((f) => ({
+                            ...f,
+                            subsection: val,
+                            section: match ? match.section : val,
+                          }));
+                        }}
                         className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
                       >
                         <option value="">Select a section...</option>
-                        {sections.map((s) => <option key={s.label}>{s.label}</option>)}
+                        {browseCategories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     </div>
                   </div>
-
-                  {/* Select Subsection */}
-                  {form.section && (
-                    <div className="flex items-start gap-3">
-                      <div className="flex flex-col items-center mt-1">
-                        <div className="w-px h-4 bg-border" />
-                        <div className="w-3 h-px bg-border" />
-                      </div>
-                      <div className="flex-1">
-                        <label className="block text-sm font-medium text-foreground mb-1.5">Select Subsection</label>
-                        <div className="relative">
-                          <select
-                            value={form.subsection}
-                            onChange={set('subsection')}
-                            className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
-                          >
-                            <option value="">Select a subsection...</option>
-                            {subsections.map((s) => <option key={s}>{s}</option>)}
-                          </select>
-                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-                        </div>
-                      </div>
-                    </div>
-                  )}
 
                   {/* Ad Type */}
                   <div>
