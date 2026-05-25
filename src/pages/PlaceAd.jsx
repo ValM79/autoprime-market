@@ -327,7 +327,7 @@ export default function PlaceAd() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="font-bold text-foreground text-base">Let's start with the basics</h1>
+            <h1 className="font-bold text-foreground text-lg">Let's start with the basics</h1>
           </div>
           <button onClick={handleReset} className="text-sm text-primary hover:underline flex items-center gap-1">
             Reset Form
