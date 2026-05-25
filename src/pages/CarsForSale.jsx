@@ -178,13 +178,13 @@ export default function CarsForSale() {
         <div className="mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">New & Used Cars For Sale</h1>
           <div className="relative w-full">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search Cars"
-              className="w-full bg-white border-0 shadow-sm rounded-xl pl-12 pr-6 py-4 text-base focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
         </div>
