@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, ChevronDown, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
+import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
 import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -116,7 +116,6 @@ const listings = [
 export default function VintageCars() {
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
-  const [viewMode, setViewMode] = useState('list');
 
   const toggleSave = (id) => setSavedIds((prev) =>
   prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
@@ -129,7 +128,7 @@ export default function VintageCars() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f4f5f6]">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-4">
@@ -145,8 +144,8 @@ export default function VintageCars() {
         </div>
 
         {/* Title + Search */}
-        <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Vintage Cars</h1>
+        <div className="mb-5">
+          <h1 className="text-2xl font-bold text-foreground mb-3">Vintage Cars</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
@@ -154,8 +153,7 @@ export default function VintageCars() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Vintage Cars"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
-            
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none border-0 outline-none" />
           </div>
         </div>
 
@@ -165,7 +163,7 @@ export default function VintageCars() {
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+          <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             <FiltersSidebar />
           </aside>
 
@@ -173,28 +171,12 @@ export default function VintageCars() {
           <div className="flex-1 min-w-0">
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-foreground font-medium">
-                <span className="font-bold">1,612</span> ads for Vintage Cars in Ireland
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{filtered.length.toLocaleString()}</span> ads for Vintage Cars in Ireland
               </p>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1">
-                  <button onClick={() => setViewMode('list')}>
-                    <LayoutList className={`w-5 h-5 ${viewMode === 'list' ? 'text-primary' : 'text-muted-foreground'}`} />
-                  </button>
-                  <button onClick={() => setViewMode('grid')}>
-                    <LayoutGrid className={`w-5 h-5 ${viewMode === 'grid' ? 'text-primary' : 'text-muted-foreground'}`} />
-                  </button>
-                </div>
-                <div className="relative">
-                  <select className="appearance-none border border-border rounded-lg px-3 py-1.5 text-sm bg-white pr-8 focus:outline-none">
-                    <option>Sort by: Best match</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Newest First</option>
-                    <option>Oldest First</option>
-                  </select>
-                  <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
-                </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                Sort by: <span className="font-semibold text-foreground">Best match</span>
+                <ChevronDown className="w-4 h-4" />
               </div>
             </div>
 
@@ -205,7 +187,7 @@ export default function VintageCars() {
                 item={car}
                 saved={savedIds.includes(car.id)}
                 onToggleSave={toggleSave}
-                viewMode={viewMode} />
+                viewMode="list" />
 
               )}
               {filtered.length === 0 &&
